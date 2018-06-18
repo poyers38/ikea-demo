@@ -1,0 +1,2 @@
+git --cached 'src\assets\images' -r
+git add 'src\assets\images' -f
