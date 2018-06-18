@@ -1,8 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # images
-/src/assets/images
-/src/assets/images_temp
+src/assets/images
+src/assets/images_temp
 
 # compiled output
 /dist
