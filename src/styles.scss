@@ -1,1 +1,553 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+.navbar {
+	padding-left: 0rem;
+	background-color: $white;
+}
+
+.collapse navbar-collapse {
+}
+
+.fluid-bread {
+	padding-left: 0px;
+	.container {
+		padding-left: 0px;
+	}
+}
+
+.list-group-item {
+	color: #000000;
+	padding: 0.5rem;
+}
+
+.list-group-item:hover {
+	color: $primary;
+}
+
+.list-group-item.active:hover {
+	color: $white;
+}
+
+.list-group-border-0 .list-group-item {
+	border: 0px;
+}
+
+
+
+/*START MOBILE HEADER*/
+
+.mobile-logo {
+	width: 150px;
+	margin-top: 1rem;
+	margin-left: 1rem;
+}
+
+.header-mobile {
+	@extend .container;
+	padding: 0px;
+	.col {
+		padding: 0px;
+	}
+	.nav {
+		margin-top: 1rem;
+		border-top: 1px solid $default-border;
+		border-bottom: 1px solid $default-border;
+	}
+	.nav-fill .nav-item {
+		color: $dark;
+		font-weight: 400;
+	}
+	
+	.nav-link.active {
+		color: $primary;
+	}
+
+}
+
+/*END MOBILE HEADER*/
+
+
+/* START PRODUCT MENU CATEGORY */
+
+.product-menu-category {
+	color: $dark;
+	ul {
+		@extend .list-group;
+	}
+	ul a {
+		@extend .list-group-item;
+		@extend .d-flex;
+		@extend .justify-content-between; 
+		@extend .align-items-center;
+		border: 0px;
+		padding: 0.2rem;
+	}
+	ul a:hover {
+		background-color: $light;
+		color: $dark;
+	}
+}
+
+/* END PRODUCT MENU CATEGORY */
+
+.product-sidebar-list {
+	@extend .list-group;
+	@extend .list-group-flush;
+	
+	a {
+		@extend .list-group-item; 
+		&.active:hover {
+			color: $primary;
+		}
+		&.active {
+			color: $primary;
+			border-color: $primary;
+			background-color: transparent;
+		}
+		
+	}
+	
+	
+}
+
+.carousel-inner {
+	max-width: 100%;
+	height: 534px;
+}
+
+.card-body {
+	text-align: center;
+	padding: 0ox;
+}
+
+.card-body p {
+	margin-bottom: 0px;
+}
+
+.card-title {
+	font-weight: 600;
+}
+
+.card-body .prod-desc {
+	font-size: 0.8rem;
+}
+
+.card-body .prod-price {
+	font-weight: 600;
+}
+
+
+/* TOP MENU */
+.top-menu {
+	@extend .form-inline;
+	@extend .my-2; 
+	@extend .my-lg-0;
+	i {
+		font-size: 1.2rem;
+		color: $dark;
+		margin-left: 5px;
+	}
+	i:hover {
+		cursor: pointer;
+	}
+}
+
+.top-menu-mobile {
+	@extend .col; 
+	@extend .col-lg-6;
+	text-align: right;
+	i {
+		font-size: 1.2rem;
+		margin-top: 1rem;
+		margin-left: 5px;
+	}
+	i:last-child {
+		margin-right: 1rem;
+	}
+}
+
+.prod-btn-buy {
+	@extend .btn;
+	@extend .btn-primary;
+	padding: 1rem;
+	&:hover {
+		@extend .btn-success;
+	}
+}
+
+.prod-btn-save {
+	@extend .btn;
+	@extend .btn-secondary;
+	
+	&:hover {
+		@extend .btn-success;
+	}
+	
+}
+
+.product-grid-card {
+	@extend .card;
+}
+
+.product-list-item {
+	@extend .container;
+	img {
+		width: 100%;
+		min-width: 200px;
+	}
+	.prod-btn-buy {
+		margin-top: 5px;
+		margin-right: 5px;
+		@extend .btn-outline-primary;
+		@extend .btn-sm;
+		&:hover {
+			background-color: $success;
+			border-color: $success;
+		}
+	}
+	.prod-btn-save {
+		margin-top: 5px;
+		@extend .btn-outline-secondary;
+		@extend .btn-sm;
+		&:hover {
+			background-color: $success;
+			border-color: $success;
+		}
+	}
+	p {
+		margin-bottom: 0px;
+	}
+	.prod-title {
+		font-weight: 1000;
+		font-size: 1.2rem;
+	}
+	.prod-price {
+		font-weight: 1000;
+		font-size: 1.2rem;
+	}
+	.prod-salesArg {
+		margin-top: 0.3rem;
+		font-size: 0.8rem;
+	}
+	.prod-button {
+		display: block;
+	}
+}
+
+.product-list-item-mobile {
+	@extend .container;
+	font-size: 0.80rem;
+	margin-bottom: 1rem;
+	cursor: pointer;
+	img {
+		width: 100%;
+		cursor: pointer;
+	}
+	p {
+		margin-bottom: 0px;
+	}
+	.prod-title {
+		font-weight: 1000;
+		font-size: .80rem;
+	}
+	.prod-desc {
+		font-size: .80rem;
+	}
+	.prod-price {
+		font-weight: 1000;
+		font-size: .80rem;
+	}
+	.prod-salesArg {
+		display: none;
+	}
+	.prod-btn-buy {
+		margin-top: 5px;
+		margin-right: 5px;
+		@extend .btn-outline-primary;
+		@extend .btn-sm;
+		&:hover {
+			background-color: $success;
+			border-color: $success;
+		}
+	}
+	.prod-btn-save {
+		margin-top: 5px;
+		@extend .btn-outline-secondary;
+		@extend .btn-sm;
+		&:hover {
+			background-color: $success;
+			border-color: $success;
+		}
+	}
+	.prod-button {
+		display:none;
+	}
+}
+
+.product-detail {
+	.container {
+		padding: 0px;
+	}
+	ngb-carousel:active {
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+	margin-top: 15px;
+	img {
+		padding: 0px;
+		margin: 0px;
+		max-width: 100%;
+		width: 100%;
+	}
+	.prod-btn-buy {
+		margin-top: 15px;
+		@extend .btn-block;
+		@extend .btn-lg;
+	}
+	.prod-btn-save {
+		margin-top: 5px;
+		@extend .btn-block;
+		@extend .btn-lg;
+	}
+	p {
+		margin-bottom: 0px;
+	}
+	.prod-title {
+		font-weight: 1000;
+		font-size: 2rem;
+	}
+	.prod-price {
+		font-weight: 1000;
+		font-size: 2rem;
+	}
+	.carousel-inner {
+		height: 100%;
+	}
+	.carousel-indicators {
+		position: relative;
+		@extend .d-flex; 
+		@extend .justify-content-center;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		display: block;
+		width: 100%;
+		margin-bottom: 15px;
+		margin-right: 0px;
+		margin-left: 0px;
+	}
+	.carousel-indicators li {
+		background-color: $dark;
+		text-indent: 0px;
+		margin-bottom: 15px;
+		height: 80px;
+		width: 80px;
+	}
+	.carousel-indicators li.active {
+		border: 1px solid $primary;
+	}
+	
+}
+
+.product-detail-mobile {
+	margin-top: 15px;
+	img {
+		padding: 0px;
+		margin: 0px;
+		max-width: 100%;
+		width: 100%;
+		display: block;
+	}
+	.prod-btn-buy {
+		margin-top: 15px;
+		@extend .btn-block;
+		@extend .btn-sm;
+	}
+	.prod-btn-save {
+		margin-top: 5px;
+		@extend .btn-block;
+		@extend .btn-sm;
+	}
+	p {
+		margin-bottom: 0px;
+	}
+	.prod-title {
+		font-weight: 1000;
+		font-size: 1rem;
+	}
+	.prod-desc {
+		font-size: .80rem;
+	}
+	.prod-price {
+		font-weight: 1000;
+		font-size: 1rem;
+	}
+	.prod-salesArg {
+		font-size: .80rem;
+	}
+	.carousel-inner {
+		height: 100%;
+	}
+	.carousel-indicators {
+		position: relative;
+		@extend .d-flex; 
+		@extend .justify-content-center;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		display: block;
+		width: 100%;
+		margin-bottom: 15px;
+		margin-right: 0px;
+		margin-left: 0px;
+	}
+	.carousel-indicators li {
+		background-color: $dark;
+		text-indent: 0px;
+		margin-bottom: 15px;
+		height: 50px;
+		width: 50px;
+	}
+	.carousel-indicators li.active {
+		border: 1px solid $primary;
+	}
+}
+.card {
+	border: 0px;
+}
+
+.card:hover {
+	.card-title {
+		color: $primary;
+	}
+
+	.card-body .prod-desc {
+		color: $primary;
+	}
+
+	.card-body .prod-price {
+		color: $primary;
+	}
+	
+	cursor: pointer;
+}
+
+.breadcrumb {
+	padding: 5px;
+    font-size: .8rem;
+}
+
+.product-img {
+    margin-bottom: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-img .card-img-top {
+    display: block;
+    position: relative;
+}
+
+.product-img .add-to-cart {
+    background-color: #282828;
+    color: #fff;
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    height: 40px;
+    left: 50%;
+    line-height: 24px;
+    margin-left: -70px;
+    margin-top: -20px;
+    opacity: 1;
+    padding: 9px 20px;
+    position: absolute;
+    text-transform: uppercase;
+    top: 50%;
+    width: 140px;
+}
+
+.product-img .action-btn {
+    //bottom: -40px;
+    left: 0;
+    position: absolute;
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    width: 100%;
+}
+.fix {
+    overflow: hidden;
+}
+
+/* START FOOTER */
+.footer-holder {
+	background-color: #dcdcdc;
+}
+
+.footer {
+	@extend .container;
+	font-size: 0.8rem;
+	color: $black;
+	background-color: transparent;
+	padding: 0.5rem;
+	.row {
+		margin: 0px;
+	}
+	h2 {
+		font-size: 1rem;
+	}
+	ul {
+		@extend .list-group;
+	}
+	li {
+		@extend .list-group-item;
+		border: 0px;
+		padding: 0px;
+		margin-bottom: .2rem;
+		background-color: transparent;
+	}
+	.col {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+
+/* END FOOTER */
+
+
+/* START MOBILE-FOOTER */
+.footer-mobile {
+	@extend .container;
+	margin-top: 1rem;
+	font-size: 0.8rem;
+	color: $black;
+	background-color: transparent;
+	.row {
+		border-top: 1px solid $default-border;
+		border-bottom: 1px solid $default-border;
+		padding: 0.5rem;
+	}
+}
+
+/* END MOBILE-FOOTER */
+
+.copyright-holder {
+	background-color: $dark;
+}
+
+.copyright {
+	@extend .container;
+	font-size: 0.8rem;
+	color: $white;
+	background-color: transparent;
+	padding: 0.2rem;
+	.col {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	.row {
+		margin: 0px;
+	}
+}

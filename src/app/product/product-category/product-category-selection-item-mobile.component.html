@@ -1,0 +1,8 @@
+<div class="product-menu-category">
+	<ul>
+		<a *ngFor="let productCategory of productCategories" (click)="onClicked(productCategory) ">
+		  {{ productCategory.name }}
+		  <span class="badge"><i class="fa fa-angle-right"></i></span>
+		</a>
+	</ul>
+</div>

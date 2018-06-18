@@ -1,0 +1,17 @@
+<div [ngClass]="{'product-list-item': deviceType == 'pc', 'product-list-item-mobile': deviceType == 'mobile'}">
+	<div (click)="onClicked(productDetailUrl)" class="row align-items-center">
+		<div class="col col-lg-4">
+			<a ><img class="card-img-top" src="../../assets/images/{{product.imgFilename}}" alt="Card image cap"></a>
+		</div>
+		<div class="col col-lg-8 ">
+			<p class="prod-title">{{product.name}}
+			<p class="prod-desc">{{product.desc}}</p>
+			<p class="prod-price">${{product.price}}</p>
+			<p class="prod-salesArg">${{product.salesArg}}</p>
+			<div class="prod-button">
+				<button type="button" class="prod-btn-buy">Buy online</button>
+				<button type="button" class="prod-btn-save">Save to list</button>
+			</div>
+		</div>
+	</div>
+</div>

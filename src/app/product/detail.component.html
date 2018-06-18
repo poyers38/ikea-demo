@@ -1,0 +1,23 @@
+<div [ngClass]="{ 'product-detail': deviceType == 'pc', 'product-detail-mobile': deviceType == 'mobile' }">
+	<div class="row">
+		<div class="col-lg-6">
+			<ngb-carousel #carousel>
+			  <ng-template *ngFor="let productImage of productImages; let i = index" ngbSlide>
+				<img *ngIf="i==0" src="../../assets/images/{{product[0].imgFilename2}}" alt="">
+				<img *ngIf="i!=0" src="../../assets/images/{{productImage.mainImg}}" alt="">
+				
+			  </ng-template>
+			</ngb-carousel>
+		</div>
+		<div class="col-lg-6">
+			<p class="prod-title">{{product[0].name}}</p>
+			<p class="prod-desc">{{product[0].desc}}</p>
+			<p class="prod-price">${{product[0].price}}</p>
+			<p class="prod-salesArg">{{product[0].salesArg}}</p>
+			
+			<button class="prod-btn-buy" (click)="changePhoto()">Buy online</button>
+			<button class="prod-btn-save">Save to list</button>
+		</div>
+		
+	</div>
+</div>

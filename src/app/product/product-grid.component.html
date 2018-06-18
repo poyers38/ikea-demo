@@ -1,0 +1,18 @@
+<div *ngIf="deviceType == 'pc'" class='mb-3 viewoption'>
+	<div *ngIf="productViewType == 'product-grid'; then thenBlock1; else elseBlock1">this is ignored</div>
+	<ng-template #thenBlock1>
+		<button class="btn btn-outline-primary" (click)="onClicked()"><i class='fa fa-th'></i></button>  
+	</ng-template>
+	<ng-template #elseBlock1>
+		<button class="btn btn-outline-primary" (click)="onClicked()"><i class='fa fa-list'></i></button>
+	</ng-template>
+</div>
+<div *ngIf="productViewType == 'product-grid'; then thenBlock; else elseBlock">this is ignored</div>
+<ng-template #thenBlock>
+	<div class="card-columns" >
+		<app-product-grid-item *ngFor="let product of products | productBySubCategoryFilterPipe:subCategory" [props]="{product:product, detailUrl: detailUrl, productViewType: 'product-grid'}"></app-product-grid-item>
+	</div>
+</ng-template>
+<ng-template #elseBlock>
+	<app-product-list-item *ngFor="let product of products | productBySubCategoryFilterPipe:subCategory" [props]="{product:product, detailUrl: detailUrl, productViewType: 'product-list'}"></app-product-list-item>
+</ng-template>

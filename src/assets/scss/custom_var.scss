@@ -1,0 +1,27 @@
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+// Grid containers
+$container-max-widths: (
+  sm: 100%,
+  md: 100%,
+  lg: 1140px,
+  xl: 1140px,
+);
+
+$primary-border:       #ccccff;
+$default-border:       #dcdcdc;
+$link-hover-color:          darken($link-color, 50%);
+//$link-hover-decoration:     none;
+//$list-group-border-width: 	0px;
+//$list-group-custom-border-width: 1px;
+$border-radius: 0rem !important;
+$enable-rounded:            false;
+$nav-pills-link-active-bg: transparent;
+$nav-pills-link-active-color: $dark;

@@ -1,0 +1,10 @@
+<div class="product-grid-card">
+	<div class="product-img">
+		<a (click)="onClicked(productDetailUrl)"><img class="card-img-top" src="../../assets/images/{{product.imgFilename}}" alt="Card image cap"></a>
+		<div class="card-body">
+			<p class="card-title">{{product.name}}
+			<p class="prod-desc">{{product.desc}}</p>
+			<p class="prod-price">${{product.price}}</p>
+		</div>
+	</div>
+</div>
