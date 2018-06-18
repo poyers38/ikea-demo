@@ -2,6 +2,7 @@
 
 # images
 /src/assets/images
+/src/assets/images_temp
 
 # compiled output
 /dist
