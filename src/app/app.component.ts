@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, NavigationStart, NavigationEnd, NavigationError, Event } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 import { ProductService } from './product/product.service';
 
@@ -22,30 +24,37 @@ export class AppComponent implements OnInit, OnDestroy {
   private currentParentUrl: string;
   private currentUrl: string;
   private deviceType: string;
+  private subDeviceType: Subscription;
+  private subRouterEvents: Subscription;
+  private subRouterParams: Subscription;
+  private subProductParentUrl: Subscription;
   
   constructor(
 	private productService: ProductService,
 	private router: Router,
 	private route: ActivatedRoute
   ) {
-		router.events.subscribe( (event: Event) => {
-			if (event instanceof NavigationStart) {
+		this.subRouterEvents = this.router.events.pipe(
+            filter(event => event instanceof NavigationEnd)
+        ).subscribe((route: ActivatedRoute) => {
+			console.log(this.router);
+			this.currentParentUrl = this.router.url.split('/')[1];
+			this.productService.changeWindowSize(window.innerWidth);
+        });
+		
+		this.subDeviceType = this.productService.deviceType$.subscribe(
+			(data: string) => {
+				this.deviceType = data;
+				if (this.deviceType == 'mobile') {
+					this.show = false;
+					this.showMobile = true;
+				} else {
+					this.show = true;
+					this.showMobile = false;
+				}
 			}
-			if (event instanceof NavigationEnd) {
-				console.log(this.router);
-				this.currentParentUrl = this.router.url.split('/')[1];
-				this.productService.changeWindowSize(window.innerWidth);
-				//console.log('productParentUrl 2: ' + this.productParentUrl);
-				//console.log('currentParentUrl 2: ' + this.currentParentUrl);
-			}
-			if (event instanceof NavigationError) {
-				// Hide loading indicator
-				// Present error to user
-				console.log(event.error);
-			}
-		});
-			
-		this.productService.productParentUrl$.subscribe(
+		)
+		this.subProductParentUrl = this.productService.productParentUrl$.subscribe(
 			(data: string) => {
 				this.productParentUrl = data;
 				
@@ -71,8 +80,6 @@ export class AppComponent implements OnInit, OnDestroy {
 				}
 			}
 		)	
-		
-		
   }
   
   ngOnInit() {
@@ -80,18 +87,7 @@ export class AppComponent implements OnInit, OnDestroy {
 	this.showMobile = false;
 	this.productService.changeWindowSize(window.innerWidth);
 
-	this.sub = this.productService.deviceType$.subscribe(
-		(data: string) => {
-			this.deviceType = data;
-			if (this.deviceType == 'mobile') {
-				this.show = false;
-				this.showMobile = true;
-			} else {
-				this.show = true;
-				this.showMobile = false;
-			}
-		}
-	)
+	
   }
   
   renderDisplay(size) {
@@ -111,6 +107,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   
   ngOnDestroy() {
-	this.sub.unsubscribe();
+	this.subDeviceType.unsubscribe();
+	this.subRouterEvents.unsubscribe();
+	this.subProductParentUrl.unsubscribe()
   }
 }

@@ -11,9 +11,8 @@ import { ProductService } from './product.service';
 
 export class ProductGridItemComponent implements OnInit {
 	@Input() props: { product: Product[]; detailUrl: string; };
-	private product: Product[];
-	private productDetailUrl: string;
-	private productViewType: string;
+	product: Product[];
+	productDetailUrl: string;
 	
 	constructor(
 		private router: Router,
@@ -24,15 +23,12 @@ export class ProductGridItemComponent implements OnInit {
 	ngOnInit() {
 		this.product = this.props.product;
 		this.productDetailUrl = this.props.detailUrl;
-		this.productViewType = this.props.productViewType;
 		
-	}
-	
-	addBreadcrumb() {
-	
 	}
 
 	onClicked(prodDetailUrl: string) {
-		this.router.navigate(['shop remote/' + prodDetailUrl + '/' + this.product.id]);
+		console.log('product');
+		console.log(this.product);
+		this.router.navigate(['shop/' + prodDetailUrl + '/' + this.product['id']]);
 	}
 }

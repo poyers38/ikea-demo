@@ -1,5 +1,5 @@
-import { productImage } from './product-image';
-export const PRODUCTIMAGES: productImage[] = [
+import { ProductImage } from './product-image';
+export const PRODUCTIMAGES: ProductImage[] = [
 	{
 		productId: 1,
 		mainImg: 'tullsta-armchair-beige__0452159_PE601037_S4.JPG', 

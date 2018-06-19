@@ -1,4 +1,4 @@
-export interface ProductCategory {
+export class ProductCategory {
 	id: number;
     name: string; 
 	category: string;

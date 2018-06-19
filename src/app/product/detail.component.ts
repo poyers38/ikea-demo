@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 import { BreadcrumbsService } from 'ng6-breadcrumbs';
 import { Product } from './product';
@@ -13,20 +14,22 @@ import { ProductService } from './product.service';
 })
 export class DetailComponent implements OnInit {
 	products: Product[];
-	product: Product[];
+	product: any[];
 	productImages: ProductImage[];
-	private breadcrumb: [];
+	private breadcrumb: any[];
 	private category: string;
 	private subCategory: string;
-	private productCode: string;
+	private productCode: number;
 	productViewType: string;
-	private deviceType: string;
+	deviceType: string;
 	private productParentUrl: string;
 	
 	@ViewChild('img1') img;
 	private subRouterEvents: Subscription;
 	private subRouterParams: Subscription;
 	private subProductParentUrl: Subscription;
+	private subDeviceType: Subscription;
+	private subProductViewType: Subscription;
 	
 	constructor(
 		private router: Router,
@@ -56,19 +59,14 @@ export class DetailComponent implements OnInit {
 				this.productViewType = data;
 			}
 		)	
-		this.subRouterEvents = router.events.subscribe( (event: Event) => {
-			if (event instanceof NavigationStart) {
-			}
-			if (event instanceof NavigationEnd) {
-				this.addBreadcrumb();
+		
+		this.subRouterEvents = this.router.events.pipe(
+            filter(event => event instanceof NavigationEnd)
+        ).subscribe((route: ActivatedRoute) => {
+            this.addBreadcrumb();
 				window.scrollTo(0, 0)
-			}
-			if (event instanceof NavigationError) {
-				// Hide loading indicator
-				// Present error to user
-				console.log(event.error);
-			}
-		});
+        });
+
 	}
 
 	ngOnInit() {
@@ -82,7 +80,7 @@ export class DetailComponent implements OnInit {
 			{label: 'shop' , url: '/' + this.productParentUrl + '/', params: []},
 			{label: this.category.toLowerCase() , url: '/' + this.productParentUrl + '/' + this.category, params: []},
 			{label: this.subCategory.toLowerCase(), url: '/' + this.productParentUrl + '/' + this.category + '/' + this.productViewType + '/' + this.subCategory, params: []},
-			{label: this.productCode.toLowerCase() , url: '', params: []},
+			{label: this.productCode , url: '', params: []},
 		];
 		this.breadcrumbsService.store(this.breadcrumb);
 	}

@@ -1,8 +1,8 @@
 <div class="card">
 	<div class="card-img-top product-cat-img">
-		<a (click)="onClicked(productCategory)"><img class="card-img-top" src="../../assets/images/{{productCategory.imgFilename}}" alt="Card image cap"></a>
+		<a (click)="onClicked(productCategory)"><img class="card-img-top" src="../../assets/images/{{productCategory['imgFilename']}}" alt="Card image cap"></a>
 	</div>
 	<div class="card-body">
-		<h5 class="card-title">{{productCategory.name}}</h5>
+		<h5 class="card-title">{{productCategory["name"]}}</h5>
 	</div>
 </div>

@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, NavigationStart, NavigationEnd, NavigationError, Event } from '@angular/router';
 import { BreadcrumbsService } from 'ng6-breadcrumbs';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 import { Product } from './product';
 import { ProductCategory } from './product-category/product-category.class';
@@ -18,7 +19,7 @@ class Props {
   templateUrl: './product-grid.component.html'
 })
 
-export class ProductGridComponent implements OnInit, OnDestroy {
+export class ProductGridComponent implements OnDestroy {
 	products: Product[];
 	productCategories: ProductCategory[];
 	category: string;
@@ -26,15 +27,15 @@ export class ProductGridComponent implements OnInit, OnDestroy {
 	private subDeviceType: Subscription;
 	private subProductParentUrl: Subscription;
 	private subProductViewType: Subscription;
-	private subRouter: Subscription;
+	private subRouterEvents: Subscription;
 	private subRouterParams: Subscription;
-	private breadcrumb: [] = [];
+	private breadcrumb: any[];
 	private detailUrl: string;
-	private productViewType: string;
-	private productViewType2: string;
-	myProps: Props[] = [];
-	private productParentUrl: string;
-	private deviceType: string;
+	productViewType: string;
+	productViewType2: string;
+	myProps: Props[];
+	productParentUrl: string;
+	deviceType: string;
 	
 	constructor(
 		private router: Router,
@@ -58,20 +59,12 @@ export class ProductGridComponent implements OnInit, OnDestroy {
 				this.productViewType = data;
 			}
 		)
-		this.subRouter = router.events.subscribe( (event: Event) => {
-			if (event instanceof NavigationStart) {
-			}
-			if (event instanceof NavigationEnd) {
-				console.log('Grid NavigationEnd');
-				this.addBreadcrumb();
-				window.scrollTo(0, 0)
-			}
-			if (event instanceof NavigationError) {
-				// Hide loading indicator
-				// Present error to user
-				console.log(event.error);
-			}
-		});
+		this.subRouterEvents = this.router.events.pipe(
+            filter(event => event instanceof NavigationEnd)
+        ).subscribe((route: ActivatedRoute) => {
+			this.addBreadcrumb();
+			window.scrollTo(0, 0)
+        });
 	}
 	
 	addBreadcrumb() {
@@ -82,7 +75,7 @@ export class ProductGridComponent implements OnInit, OnDestroy {
 		this.detailUrl = '../../' + this.category + '/' + this.subCategory + '/detail';
 		this.productCategories = this.productService.getProductCategories();
 		this.products = this.productService.getProducts();
-		this.myProps = { products: this.products, detailUrl: this.detailUrl };
+		//this.myProps.push({ products: this.products, detailUrl: this.detailUrl});
 		this.breadcrumb = [
 		{label: 'shop' , url: '/' + this.productParentUrl + '/', params: []},
 		{label: this.category.toLowerCase() , url: '/' + this.productParentUrl + '/' + this.category, params: []},
@@ -104,9 +97,9 @@ export class ProductGridComponent implements OnInit, OnDestroy {
 	}
 	
 	removeBreadcrumb() {
-		this.breadcrumb = [];
+		this.breadcrumb = [] = [];
 		this.breadcrumbsService.store(this.breadcrumb);
-		console.log('ngOnDestroy breadcrumb');
+		console.log('ngOnDestroy1 breadcrumb');
 	}
 	   
 	   
@@ -114,7 +107,7 @@ export class ProductGridComponent implements OnInit, OnDestroy {
 		this.subDeviceType.unsubscribe();
 		this.subProductParentUrl.unsubscribe();
 		this.subProductViewType.unsubscribe();
-		this.subRouter.unsubscribe();
+		this.subRouterEvents.unsubscribe();
 		this.subRouterParams.unsubscribe();
 		this.removeBreadcrumb();
 	}

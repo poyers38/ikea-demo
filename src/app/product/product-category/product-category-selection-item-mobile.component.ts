@@ -10,7 +10,7 @@ import { ProductService } from '../product.service';
 })
 
 export class ProductCategorySelectionItemMobileComponent implements OnInit {
-  @Input() productCategories: ProductCategory[];
+  @Input() productCategories: ProductCategory;
   @Input('productCategory') category: string;
   @Input('productViewType') productViewType: string;
   
@@ -25,7 +25,6 @@ export class ProductCategorySelectionItemMobileComponent implements OnInit {
   }
   
   onClicked(prodCat: ProductCategory[]) {
-	this.productService.productViewType$.subscribe(data => { this.productViewType = data; });
-	this.router.navigate(['./m.shop/' + this.category + '/' + this.productViewType + '/' + prodCat.name]);
+	this.router.navigate(['./m.shop/' + this.category + '/' + this.productViewType + '/' + prodCat['name']]);
    }
 }

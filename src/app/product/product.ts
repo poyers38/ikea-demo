@@ -1,8 +1,7 @@
-
-export interface Product {
+export class Product {
 	id: number;
     name: string; 
-	price: string;
+	price: number;
 	imgFilename: string;
 	imgFilename2: string;
 	desc: string;
@@ -11,8 +10,8 @@ export interface Product {
 	menuCategory: string;
 	menuSubCategory: string;
 	dept: string;
-	DeptCategory: string;
-	FIELD11: string;
+	deptCategory: string;
+	field11: string;
 	color: string;
 	salesArg: string;
 }

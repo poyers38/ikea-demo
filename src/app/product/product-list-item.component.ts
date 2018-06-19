@@ -11,12 +11,12 @@ import { ProductService } from './product.service';
 
 export class ProductListItemComponent implements OnInit, OnDestroy {
 	@Input() props: { product: Product[]; detailUrl: string; productViewType: string; };
-	private product: Product[] = [];
-	private productDetailUrl: string;
+	product: Product[];
+	productDetailUrl: string;
 	private productViewType: string;
 	productViewType2: string;
 	private sub: any;
-	private deviceType: string;
+	deviceType: string;
 	
 	constructor(
 		private router: Router,
@@ -35,7 +35,7 @@ export class ProductListItemComponent implements OnInit, OnDestroy {
 	}
 
 	onClicked(prodDetailUrl: string) {
-		this.router.navigate(['shop/' + prodDetailUrl + '/' + this.product.id]);
+		this.router.navigate(['shop/' + prodDetailUrl + '/' + this.product['id']]);
 	}
 	
 	ngOnDestroy() {

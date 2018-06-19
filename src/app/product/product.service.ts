@@ -3,7 +3,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 
 import { Product } from './product';
 import { PRODUCTS } from './mock-product';
-import { ProductImage } from './product-images';
+import { ProductImage } from './product-image';
 import { PRODUCTIMAGES } from './mock-product-image';
 import { ProductCategory } from './product-category/product-category.class';
 import { PRODUCTCATEGORY } from './mock-product-category';
@@ -20,20 +20,17 @@ export class ProductService {
   private productImages: ProductImage[];
   mobileDefaultViewType: string; 
   
-  productViewTypeSource = new BehaviorSubject<string>();
+  productViewTypeSource = new BehaviorSubject<string>("");
   productViewType$ = this.productViewTypeSource.asObservable();
   
-  productParentUrlSource = new BehaviorSubject<string>();
+  productParentUrlSource = new BehaviorSubject<string>("");
   productParentUrl$ = this.productParentUrlSource.asObservable();
   productParentUrl: string;
-  deviceTypeSource = new BehaviorSubject<string>();
+  deviceTypeSource = new BehaviorSubject<string>("");
   deviceType$ = this.deviceTypeSource.asObservable();
   deviceType: string;
   
   constructor() { 
-	this.products = PRODUCTS;
-	this.productCategories = PRODUCTCATEGORY;
-	this.productImages = PRODUCTIMAGES;
 	this.displayViewOption = true;
 	this.productViewTypeSource.next('product-grid');
 	this.deviceTypeSource.next('pc');
@@ -46,7 +43,8 @@ export class ProductService {
   }
  
   getProduct(id: number) : Product[] {
-	return this.products.filter(Product => Product.id == id);
+	this.products = PRODUCTS;
+	return PRODUCTS.filter(Product => Product['id'] == id);
   }
   
   getProductCategories() : ProductCategory[] {
@@ -54,7 +52,7 @@ export class ProductService {
   }
   
   getProductImages() : ProductImage[] {
-	return this.productImages;
+	return PRODUCTIMAGES;
   }
   
   changeProductViewType(data: string) {

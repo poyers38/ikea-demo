@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 import { BreadcrumbsService } from 'ng6-breadcrumbs';
 import { ProductCategory } from './product-category.class';
@@ -14,19 +15,20 @@ import { Product } from '../product';
   styleUrls: ['./product-category-selection.component.scss']
 })
 export class ProductCategorySelectionComponent implements OnInit {
-	private sub: Subscription;
-	private category: string;
-	private products: Product[] = [];
-	private productCategories: ProductCategory[] = [];
-	private breadcrumb: [];
+	category: string;
+	private products: Product[];
+	productCategories: ProductCategory[];
+	private breadcrumb: any[];
 	private displayViewOption: boolean;
-	private deviceType: string;
+	deviceType: string;
+	private productViewType: string;
 	private productParentUrl: string;
 	
 	private subRouterEvents: Subscription;
 	private subRouterParams: Subscription;
 	private subProductParentUrl: Subscription;
 	private subDeviceType: Subscription;
+	private subProductViewType: Subscription; 
 	
 	constructor(
 		private router: Router,
@@ -34,19 +36,13 @@ export class ProductCategorySelectionComponent implements OnInit {
 		private productService: ProductService,
 		private breadcrumbsService: BreadcrumbsService
 	) {
-		this.subRouterEvents = router.events.subscribe( (event: Event) => {
-			if (event instanceof NavigationStart) {
-			}
-			if (event instanceof NavigationEnd) {
-				this.addBreadcrumb();
-			}
-			if (event instanceof NavigationError) {
-				// Hide loading indicator
-				// Present error to user
-				console.log(event.error);
-			}
-		});
-		
+	
+		this.subRouterEvents = this.router.events.pipe(
+            filter(event => event instanceof NavigationEnd)
+        ).subscribe((route: ActivatedRoute) => {
+			this.addBreadcrumb();
+        });
+
 		this.subDeviceType = this.productService.deviceType$.subscribe(
 			(data: string) => {
 				this.deviceType = data;
@@ -55,6 +51,12 @@ export class ProductCategorySelectionComponent implements OnInit {
 		this.subProductParentUrl = this.productService.productParentUrl$.subscribe(
 			(data: string) => {
 				this.productParentUrl = data;
+				this.addBreadcrumb();
+			}
+		)
+		this.subProductViewType = this.productService.productViewType$.subscribe(
+			(data: string) => {
+				this.productViewType = data;
 				this.addBreadcrumb();
 			}
 		)
@@ -90,6 +92,7 @@ export class ProductCategorySelectionComponent implements OnInit {
 		this.subRouterParams.unsubscribe();
 		this.subProductParentUrl.unsubscribe();
 		this.subDeviceType.unsubscribe();
+		this.subProductViewType.unsubscribe();
 		this.removeBreadcrumb();
 	}
 }

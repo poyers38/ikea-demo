@@ -9,8 +9,8 @@ import { ProductCategory } from './product-category/product-category.class';
   styleUrls: ['./product-home.component.scss']
 })
 export class ProductHomeComponent implements OnInit {
-	private breadcrumb: [] = [];
-	private productCategories: ProductCategory[];
+	private breadcrumb: any[];
+	productCategories: ProductCategory[];
 	
 	constructor(
 		private breadcrumbsService: BreadcrumbsService,
