@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadcrumbsService } from 'ng6-breadcrumbs';
+import { Subscription } from 'rxjs';
+
 import { ProductService } from './product.service';
 import { ProductCategory } from './product-category/product-category.class';
 
@@ -11,11 +13,18 @@ import { ProductCategory } from './product-category/product-category.class';
 export class ProductHomeComponent implements OnInit {
 	private breadcrumb: any[];
 	productCategories: ProductCategory[];
+	private subProductViewType : Subscription;
+	productViewType: string;
 	
 	constructor(
 		private breadcrumbsService: BreadcrumbsService,
 		private productService: ProductService
 	) { 
+		this.subProductViewType = this.productService.productViewType$.subscribe(
+			(data: string) => {
+				this.productViewType = data;
+			}
+		)
 	}
 
 	ngOnInit() {

@@ -193,6 +193,7 @@
 
 .product-list-item {
 	@extend .container;
+	margin-top: 1rem;
 	img {
 		width: 100%;
 		min-width: 200px;
@@ -220,11 +221,11 @@
 		margin-bottom: 0px;
 	}
 	.prod-title {
-		font-weight: 1000;
+		font-weight: 800;
 		font-size: 1.2rem;
 	}
 	.prod-price {
-		font-weight: 1000;
+		font-weight: 800;
 		font-size: 1.2rem;
 	}
 	.prod-salesArg {
@@ -238,6 +239,7 @@
 
 .product-list-item-mobile {
 	@extend .container;
+	margin-top: 1rem;
 	font-size: 0.80rem;
 	margin-bottom: 1rem;
 	cursor: pointer;
@@ -249,14 +251,14 @@
 		margin-bottom: 0px;
 	}
 	.prod-title {
-		font-weight: 1000;
+		font-weight: 800;
 		font-size: .80rem;
 	}
 	.prod-desc {
 		font-size: .80rem;
 	}
 	.prod-price {
-		font-weight: 1000;
+		font-weight: 800;
 		font-size: .80rem;
 	}
 	.prod-salesArg {
@@ -284,6 +286,10 @@
 	.prod-button {
 		display:none;
 	}
+}
+
+.carousel {
+	width: 100%;
 }
 
 .product-detail {
@@ -315,17 +321,18 @@
 		margin-bottom: 0px;
 	}
 	.prod-title {
-		font-weight: 1000;
+		font-weight: 800;
 		font-size: 2rem;
 	}
 	.prod-price {
-		font-weight: 1000;
+		font-weight: 800;
 		font-size: 2rem;
 	}
 	.carousel-inner {
 		height: 100%;
 	}
-	.carousel-indicators {
+	.carousel-indicators-custom {
+		@extend .carousel-indicators;
 		position: relative;
 		@extend .d-flex; 
 		@extend .justify-content-center;
@@ -338,17 +345,19 @@
 		margin-right: 0px;
 		margin-left: 0px;
 	}
-	.carousel-indicators li {
+	.carousel-indicators-custom li {
 		background-color: $dark;
 		text-indent: 0px;
 		margin-bottom: 15px;
 		height: 80px;
 		width: 80px;
 	}
-	.carousel-indicators li.active {
+	.carousel-indicators-custom li.active {
 		border: 1px solid $primary;
 	}
-	
+	.carousel-indicators {
+		display: none;
+	}
 }
 
 .product-detail-mobile {
@@ -374,14 +383,14 @@
 		margin-bottom: 0px;
 	}
 	.prod-title {
-		font-weight: 1000;
+		font-weight: 800;
 		font-size: 1rem;
 	}
 	.prod-desc {
 		font-size: .80rem;
 	}
 	.prod-price {
-		font-weight: 1000;
+		font-weight: 800;
 		font-size: 1rem;
 	}
 	.prod-salesArg {
@@ -390,7 +399,8 @@
 	.carousel-inner {
 		height: 100%;
 	}
-	.carousel-indicators {
+	.carousel-indicators-custom {
+		@extend .carousel-indicators;
 		position: relative;
 		@extend .d-flex; 
 		@extend .justify-content-center;
@@ -403,15 +413,18 @@
 		margin-right: 0px;
 		margin-left: 0px;
 	}
-	.carousel-indicators li {
+	.carousel-indicators-custom li {
 		background-color: $dark;
 		text-indent: 0px;
 		margin-bottom: 15px;
-		height: 50px;
-		width: 50px;
+		height: 80px;
+		width: 80px;
 	}
-	.carousel-indicators li.active {
+	.carousel-indicators-custom li.active {
 		border: 1px solid $primary;
+	}
+	.carousel-indicators {
+		display: none;
 	}
 }
 .card {

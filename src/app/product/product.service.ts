@@ -55,6 +55,11 @@ export class ProductService {
 	return PRODUCTIMAGES;
   }
   
+  getProductImage(prodId: number) : ProductImage[] {
+	console.log('prodId' + prodId);
+	return PRODUCTIMAGES.filter(ProductImage => ProductImage['productId'] == prodId);
+  }
+  
   changeProductViewType(data: string) {
 	console.log('deviceType: ' + this.deviceType);
 	let newProductViewType = data;

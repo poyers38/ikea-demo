@@ -20,6 +20,7 @@ import { ProductHomeComponent } from './product-home.component';
 import { ProductService } from './product.service';
 import { ProductCategoryFilterPipe } from './product-category/product-category-filter.pipe';
 import { ProductBySubCategoryFilterPipe } from './product-sub-category-filter.pipe';
+import { ProductImageFilterPipe } from './product-image-filter.pipe';
 import { BreadcrumbsModule } from "ng6-breadcrumbs";
 import { ProductSidebarDirective } from './product-sidebar.directive';
 import { ProductFilterPipe } from './product-filter.pipe';
@@ -51,6 +52,7 @@ import { ProductCategorySelectionItemMobileComponent } from './product-category/
 	ProductHomeComponent,
 	ProductCategoryFilterPipe,
 	ProductBySubCategoryFilterPipe,
+	ProductImageFilterPipe,
 	ProductSidebarDirective,
 	ProductFilterPipe,
 	ProductSidebarMobileComponent,

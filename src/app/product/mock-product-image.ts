@@ -19,6 +19,24 @@ export const PRODUCTIMAGES: ProductImage[] = [
 		productId: 1,
 		mainImg: 'tullsta-armchair-beige__0428806_PE583716_S4.JPG', 
 		thumbImg: '0428806_PE583716_S3.JPG'
+	},
+	{
+		productId: 7,
+		mainImg: 'sniglar-cot__0642025_PH149974_S4.JPG', 
+		thumbImg: '0428806_PE583716_S3.JPG'
+	},
+	{
+		productId: 9,
+		mainImg: 'gulliver-cot-white__0469153_PE611984_S4.JPG', 
+		thumbImg: '0469153_PE611984_S3.JPG'
+	},
+	{
+		productId: 9,
+		mainImg: 'gulliver-cot-white__0469195_PE612028_S4.JPG', 
+		thumbImg: '0469153_PE611984_S3.JPG'
 	}
+	
+	
+	
 ]
 

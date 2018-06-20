@@ -1,9 +1,9 @@
 <div *ngIf="deviceType == 'pc'; then thenBlock; else elseBlock">this is ignored</div>
 <ng-template #thenBlock>
 	<div class="product-category-card-columns">
-		<app-product-category-selection-item *ngFor="let productCategory of productCategories | productCategoryFilterPipe:category" [productCategory]=productCategory [productViewType]=[productViewType]></app-product-category-selection-item>
+		<app-product-category-selection-item *ngFor="let productCategory of productCategories | productCategoryFilterPipe:category" [productCategory]=productCategory [productViewType]=productViewType></app-product-category-selection-item>
 	</div>
 </ng-template>
 <ng-template #elseBlock>
-	<app-product-category-selection-item-mobile [productCategories]="productCategories | productCategoryFilterPipe:category" [productCategory]="category" [productViewType]=[productViewType]></app-product-category-selection-item-mobile>
+	<app-product-category-selection-item-mobile [productCategories]="productCategories | productCategoryFilterPipe:category" [productCategory]="category" [productViewType]=productViewType></app-product-category-selection-item-mobile>
 </ng-template>

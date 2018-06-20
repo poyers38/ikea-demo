@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, Renderer2 } from '@angular/core';
 import { Router, ActivatedRoute, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -25,6 +25,7 @@ export class DetailComponent implements OnInit {
 	private productParentUrl: string;
 	
 	@ViewChild('img1') img;
+	@ViewChild('imageCarousel') imageCarousel;
 	private subRouterEvents: Subscription;
 	private subRouterParams: Subscription;
 	private subProductParentUrl: Subscription;
@@ -35,13 +36,15 @@ export class DetailComponent implements OnInit {
 		private router: Router,
 		private route: ActivatedRoute,
 		private breadcrumbsService: BreadcrumbsService,
-		private productService: ProductService
+		private productService: ProductService,
+		private renderer: Renderer2
 	) 
-	{ 
+	{
 		this.subRouterParams = this.route.params.subscribe(params => {
 			this.category = params['productCategory']; 
 			this.subCategory = params['productSubCategory']; 
 			this.productCode = params['productCode']; 
+			
 		});
 		
 		this.subProductParentUrl = this.productService.productParentUrl$.subscribe(
@@ -71,10 +74,15 @@ export class DetailComponent implements OnInit {
 
 	ngOnInit() {
 		this.product = this.productService.getProduct(this.productCode);
-		this.productImages = this.productService.getProductImages();
+		console.log(this.productCode);
+		this.productImages = this.productService.getProductImage(this.productCode);
 		console.log(this.productImages);
 	}
-
+	
+	changePhoto(imgPath: string) {
+		console.log(imgPath);
+		this.imageCarousel.nativeElement.src = imgPath;
+	}
 	addBreadcrumb() {
 		this.breadcrumb = [
 			{label: 'shop' , url: '/' + this.productParentUrl + '/', params: []},
@@ -85,11 +93,7 @@ export class DetailComponent implements OnInit {
 		this.breadcrumbsService.store(this.breadcrumb);
 	}
     
-	changePhoto() {
-		console.log(this.img);
-		this.img.nativeElement.src = '../../assets/images/strandmon-wing-chair-yellow__0325450_PE517970_S4.JPG'
-	}
-	
+
 	removeBreadcrumb() {
 		this.breadcrumb = [];
 		this.breadcrumbsService.store(this.breadcrumb);
