@@ -8,12 +8,6 @@ export const PRODUCTCATEGORY: ProductCategory[] = [
    "imgFilename": "70462_PE185759_S3.JPG"
  },
  {
-   "id": 2,
-   "category": "Baby",
-   "name": "Mattresses",
-   "imgFilename": "matresses.JPG"
- },
- {
    "id": 3,
    "category": "Baby",
    "name": "Changing tables & nursing",
@@ -174,5 +168,65 @@ export const PRODUCTCATEGORY: ProductCategory[] = [
    "category": "Decorations",
    "name": "Mirrors",
    "imgFilename": "stockholm-mirror__0177101_PE329948_S2.JPG"
+ },
+ {
+   "id": 30,
+   "category": "Beds",
+   "name": "Single beds",
+   "imgFilename": "0159176_PE315614_S3.JPG"
+ },
+ {
+   "id": 31,
+   "category": "Beds",
+   "name": "Double beds",
+   "imgFilename": "0588498_PE673086_S3.JPG"
+ },
+ {
+   "id": 32,
+   "category": "Beds",
+   "name": "Guest beds & day beds",
+   "imgFilename": "0159176_PE315614_S3.JPG"
+ },
+ {
+   "id": 33,
+   "category": "Beds",
+   "name": "Beds with storage",
+   "imgFilename": "0351322_PE540627_S3.JPG"
+ },
+ {
+   "id": 333,
+   "category": "Beds",
+   "name": "Sofa-beds",
+   "imgFilename": "0519027_PE641353_S3.JPG"
+ },
+ {
+   "id": 34,
+   "category": "Beds",
+   "name": "Loft and bunk beds",
+   "imgFilename": "63504_PE171155_S3.JPG"
+ },
+ {
+   "id": 36,
+   "category": "Kitchen Furniture",
+   "name": "Modular kitchens",
+   "imgFilename": "0477904_PE617151_S3.JPG"
+ },
+ {
+   "id": 37,
+   "category": "Kitchen Furniture",
+   "name": "Pantry",
+   "imgFilename": "0217710_PE374967_S3.JPG"
+ },
+ {
+   "id": 38,
+   "category": "Kitchen Furniture",
+   "name": "Kitchen islands & trolleys",
+   "imgFilename": "0251742_PE390385_S3.JPG"
+ },
+ {
+   "id": 39,
+   "category": "Kitchen Furniture",
+   "name": "Step stools & ladders",
+   "imgFilename": "0122139_PE278504_S3.JPG"
  }
-]
+];

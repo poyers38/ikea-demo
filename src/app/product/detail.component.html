@@ -7,11 +7,11 @@
 				</div>
 				<div class="row">
 					<ol *ngIf="productImages.length > 0" class="carousel-indicators-custom">
-						<li (click)="changePhoto('./assets/images/' +  product[0].imgFilename2)" id="slide-indi-0">
+						<li (click)="changePhoto('./assets/images/' + product[0].imgFilename2)" id="slide-indi-0">
 							<img src="./assets/images/{{product[0].imgFilename2}}" alt="">
 						</li>
-						<li (click)="changePhoto('./assets/images/' + productImage.mainImg)" *ngFor="let productImage of productImages; let i = index" id="slide-indi-{{i + 1}}">
-							<img src="./assets/images/{{productImage['mainImg']}}" alt="">
+						<li (click)="changePhoto(productImage['mainImg'])" *ngFor="let productImage of productImages; let i = index" id="slide-indi-{{i + 1}}">
+							<img src="{{productImage['mainImg']}}" alt="">
 						</li>
 					</ol>
 				</div>
