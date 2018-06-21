@@ -1,7 +1,7 @@
 <div [ngClass]="{'product-list-item': deviceType == 'pc', 'product-list-item-mobile': deviceType == 'mobile'}">
 	<div (click)="onClicked(productDetailUrl)" class="row align-items-center">
 		<div class="col col-lg-4">
-			<a ><img class="card-img-top" src="./assets/images/{{product['imgFilename']}}" alt="Card image cap"></a>
+			<a ><img class="card-img-top" src="{{product['imgFilename']}}" alt="Card image cap"></a>
 		</div>
 		<div class="col col-lg-8 ">
 			<p class="prod-title">{{product["name"]}}

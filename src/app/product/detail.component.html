@@ -3,12 +3,12 @@
 		<div class="col-lg-6">
 			<div class="container">
 				<div class="row">
-					<img #imageCarousel src="./assets/images/{{product[0].imgFilename2}}" alt="">
+					<img #imageCarousel src="{{product[0].imgFilename2}}" alt="">
 				</div>
 				<div class="row">
 					<ol *ngIf="productImages.length > 0" class="carousel-indicators-custom">
 						<li (click)="changePhoto('./assets/images/' + product[0].imgFilename2)" id="slide-indi-0">
-							<img src="./assets/images/{{product[0].imgFilename2}}" alt="">
+							<img src="{{product[0].imgFilename2}}" alt="">
 						</li>
 						<li (click)="changePhoto(productImage['mainImg'])" *ngFor="let productImage of productImages; let i = index" id="slide-indi-{{i + 1}}">
 							<img src="{{productImage['mainImg']}}" alt="">
