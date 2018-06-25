@@ -34,6 +34,14 @@ export class ProductService {
   isSearchBarMobileOpen$ = this.isSearchBarMobileOpenSource.asObservable();
   isSearchBarMobileOpen: boolean;
   
+  prevProdSearchSource = new BehaviorSubject<string>("");
+  prevProdSearch$ = this.prevProdSearchSource.asObservable();
+  prevProdSearch: string;
+  
+  prevUrlSource = new BehaviorSubject<string>("");
+  prevUrl$ = this.prevUrlSource.asObservable();
+  prevUrl: string;
+  
   constructor() { 
 	this.displayViewOption = true;
 	this.productViewTypeSource.next('product-grid');
@@ -94,4 +102,11 @@ export class ProductService {
 	this.isSearchBarMobileOpenSource.next(data);
   }
   
+  changePrevUrl(data: string) {
+	this.prevUrlSource.next(data);
+  }
+  
+  changePrevProdSearch(data: string) {
+	this.prevProdSearchSource.next(data);
+  }
 }

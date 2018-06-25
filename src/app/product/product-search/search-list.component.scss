@@ -1,0 +1,28 @@
+.container {
+	height: 50px;
+	max-height: 50px;
+	padding: 0px;
+	line-height: 1rem;
+}
+.prevUrl {
+	padding-left: .50rem;
+	padding-right: .50rem;
+	margin-right: .50rem;
+	line-height: 2rem;
+}
+i {
+	padding: 0px;
+}
+.btn {
+	line-height: 1rem;
+	box-shadow:none !important;
+}
+
+input[type="text"], textarea {
+	-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+	outline: none;
+	box-shadow:none !important;
+	border: 1px solid #17a2b8;
+}

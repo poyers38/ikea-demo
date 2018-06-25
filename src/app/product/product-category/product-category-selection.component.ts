@@ -64,7 +64,7 @@ export class ProductCategorySelectionComponent implements OnInit, OnDestroy {
 
   ngOnInit() : void {
 	this.productCategories = this.productService.getProductCategories();
-	
+	this.addBreadcrumb();
   }
   
   addBreadcrumb() {

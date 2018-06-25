@@ -9,8 +9,8 @@
 	<router-outlet></router-outlet>
 </div>
 
-<app-footer *ngIf="show"></app-footer>
-<app-footer-mobile *ngIf="showMobile"></app-footer-mobile>
+<app-footer *ngIf="show" ></app-footer>
+<app-footer-mobile *ngIf="showMobile && !isSearchBarMobileOpen2"></app-footer-mobile>
 
 <div *ngIf="show" class="copyright-holder">
 	<div class="copyright">

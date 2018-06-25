@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationStart, NavigationEnd, NavigationError, Event } from '@angular/router';
 import { BreadcrumbsService } from 'ng6-breadcrumbs';
 import { Subscription } from 'rxjs';
@@ -65,6 +65,10 @@ export class ProductGridComponent implements OnDestroy {
 			this.addBreadcrumb();
 			window.scrollTo(0, 0)
         });
+	}
+	
+	ngOnInit() {
+		this.addBreadcrumb();
 	}
 	
 	addBreadcrumb() {

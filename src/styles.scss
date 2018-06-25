@@ -35,6 +35,13 @@ $mobile-gap: 1rem;
 	border: 0px;
 }
 
+.btn-outline-info:not(:disabled):not(.disabled):active, .btn-outline-info:not(:disabled):not(.disabled).active, .show > .btn-outline-info.dropdown-toggle {
+	-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+	@extend .btn-outline-info;
+}
+
 /*START MOBILE HEADER*/
 
 .mobile-logo {

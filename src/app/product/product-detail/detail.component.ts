@@ -67,16 +67,15 @@ export class DetailComponent implements OnInit {
             filter(event => event instanceof NavigationEnd)
         ).subscribe((route: ActivatedRoute) => {
             this.addBreadcrumb();
-				window.scrollTo(0, 0)
+			window.scrollTo(0, 0)
         });
 
 	}
 
 	ngOnInit() {
 		this.product = this.productService.getProduct(this.productCode);
-		console.log(this.productCode);
 		this.productImages = this.productService.getProductImage(this.productCode);
-		console.log(this.productImages);
+		this.addBreadcrumb();
 	}
 	
 	changePhoto(imgPath: string) {

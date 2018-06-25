@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { ProductService } from '../product/product.service';
@@ -16,11 +16,16 @@ export class TopMenuBarComponent implements OnDestroy
   deviceType: string;
   subDeviceType: Subscription;
   subSearchBarMobileOpen: Subscription;
+  currentUrl: string;
+  
   constructor(
 	private productService: ProductService,
-	private router: Router
+	private router: Router,
+	private route: ActivatedRoute
   ) { 
 		this.isSearchBarOpen = false;
+		console.log(this.route.url);
+		
 		this.subDeviceType = this.productService.deviceType$.subscribe(
 			(data: string) => {
 				this.deviceType = data;
@@ -34,10 +39,14 @@ export class TopMenuBarComponent implements OnDestroy
   }
 
   toggleSearchBar(): void {
-    if (this.deviceType != 'mobile')
+    if (this.deviceType != 'mobile') {
 		this.isSearchBarOpen = !this.isSearchBarOpen;
-	else 
+	}
+	else {
+		console.log('this.currentUrl ' + this.router.url);
+		this.productService.changePrevUrl(decodeURIComponent(this.router.url));
 		this.router.navigate(['m.shop/search']);
+	}
   }
   
   ngOnDestroy() {
