@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 import { Product } from './product';
-import { PRODUCTS } from './mock-product';
+import { PRODUCTS } from './product-data-mock/mock-product';
 import { ProductImage } from './product-image';
-import { PRODUCTIMAGES } from './mock-product-image';
+import { PRODUCTIMAGES } from './product-data-mock/mock-product-image';
 import { ProductCategory } from './product-category/product-category.class';
-import { PRODUCTCATEGORY } from './mock-product-category';
-import { ProductModule } from './product.module';
+import { PRODUCTCATEGORY } from './product-data-mock/mock-product-category';
 
 @Injectable({
   providedIn: 'root',
@@ -26,15 +25,21 @@ export class ProductService {
   productParentUrlSource = new BehaviorSubject<string>("");
   productParentUrl$ = this.productParentUrlSource.asObservable();
   productParentUrl: string;
+  
   deviceTypeSource = new BehaviorSubject<string>("");
   deviceType$ = this.deviceTypeSource.asObservable();
   deviceType: string;
+  
+  isSearchBarMobileOpenSource = new BehaviorSubject<boolean>(false);
+  isSearchBarMobileOpen$ = this.isSearchBarMobileOpenSource.asObservable();
+  isSearchBarMobileOpen: boolean;
   
   constructor() { 
 	this.displayViewOption = true;
 	this.productViewTypeSource.next('product-grid');
 	this.deviceTypeSource.next('pc');
 	this.productParentUrlSource.next('shop');
+	this.isSearchBarMobileOpenSource.next(false);
 	this.mobileDefaultViewType = 'product-list';
   }
   
@@ -83,6 +88,10 @@ export class ProductService {
 	//console.log('this.productParentUrl: ' + this.productParentUrl);
 	this.deviceTypeSource.next(this.deviceType);
 	this.productParentUrlSource.next(this.productParentUrl);
+  }
+  
+  changeSearchBarMobile(data: boolean) {
+	this.isSearchBarMobileOpenSource.next(data);
   }
   
 }

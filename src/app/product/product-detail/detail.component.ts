@@ -2,11 +2,11 @@ import { Component, OnInit, OnDestroy, ViewChild, Renderer2 } from '@angular/cor
 import { Router, ActivatedRoute, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-
 import { BreadcrumbsService } from 'ng6-breadcrumbs';
-import { Product } from './product';
-import { ProductImage } from './product-image';
-import { ProductService } from './product.service';
+
+import { Product } from '../product';
+import { ProductImage } from '../product-image';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-detail',

@@ -1,6 +1,5 @@
-
 <div class="container" (window:resize)="onResize($event)">
-	<div class="row">
+	<div *ngIf="!isSearchBarMobileOpen2" class="row">
 		<div class="col col-lg-12">
 			<app-header *ngIf="show"></app-header>
 			<app-header-mobile *ngIf="showMobile"></app-header-mobile>

@@ -7,8 +7,6 @@ import { Product } from './product';
 export class ProductBySubCategoryFilterPipe implements PipeTransform {
 
   transform(products: Product[], args?: any): Product[] {
-	console.log('aaa');
-	console.log(args);
     return products.filter(Product => Product.menuSubCategory.toLowerCase() == args.toLowerCase());
   }
 

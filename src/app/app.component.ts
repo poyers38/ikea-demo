@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { Router, ActivatedRoute, NavigationStart, NavigationEnd, NavigationError, Event } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -10,12 +10,17 @@ import { ProductService } from './product/product.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements 
+	OnInit, 
+	OnDestroy
+{
   title = 'app11111111';
   innerWidth: string;
   show: boolean;
   showMobile: boolean;
   productParentUrl: string;
+  isSearchBarMobileOpen: boolean;
+  isSearchBarMobileOpen2: boolean;
   urlParts: string[];
   newUrl: string;
   screenWidth: number;
@@ -28,6 +33,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private subRouterEvents: Subscription;
   private subRouterParams: Subscription;
   private subProductParentUrl: Subscription;
+  private subSearchBar: Subscription;
   
   constructor(
 	private productService: ProductService,
@@ -37,11 +43,11 @@ export class AppComponent implements OnInit, OnDestroy {
 		this.subRouterEvents = this.router.events.pipe(
             filter(event => event instanceof NavigationEnd)
         ).subscribe((route: ActivatedRoute) => {
-			console.log(this.router);
+			console.log('sub');
 			this.currentParentUrl = this.router.url.split('/')[1];
 			this.productService.changeWindowSize(window.innerWidth);
+			this.openSearchBar();
         });
-		
 		this.subDeviceType = this.productService.deviceType$.subscribe(
 			(data: string) => {
 				this.deviceType = data;
@@ -58,14 +64,14 @@ export class AppComponent implements OnInit, OnDestroy {
 			(data: string) => {
 				this.productParentUrl = data;
 				
-				//console.log('productParentUrl: ' + this.productParentUrl);
+				console.log('router.url.: ' + this.router.url);
 				//console.log('currentParentUrl: ' + this.currentParentUrl);
 				if (this.productParentUrl != this.currentParentUrl && this.currentParentUrl != undefined) {
 					this.urlParts = this.router.url.split('/');
 					this.urlParts = this.router.url.split('/');
 					this.newUrl = '';
 					let i = 1;
-					
+					//console.log(urlParts);
 					for (let item of this.urlParts) {
 						if (i === 2)
 							this.newUrl = '/' + this.productParentUrl;
@@ -75,19 +81,29 @@ export class AppComponent implements OnInit, OnDestroy {
 						i = i + 1;
 						
 					}
-					console.log('CHANGED URL'	);
+					//console.log('CHANGED URL'	);
 					this.router.navigate([this.newUrl]);
 				}
 			}
-		)	
+		)
+		this.subSearchBar = this.productService.isSearchBarMobileOpen$.subscribe(
+			(data: boolean) => {
+				this.isSearchBarMobileOpen = data;
+			}
+		)		
   }
   
+  openSearchBar() {
+	if (this.router.url == '/m.shop/search') 
+		this.isSearchBarMobileOpen2 = true;
+	else
+		this.isSearchBarMobileOpen2 = false;
+}
+
   ngOnInit() {
 	this.show = true;
 	this.showMobile = false;
 	this.productService.changeWindowSize(window.innerWidth);
-
-	
   }
   
   renderDisplay(size) {
@@ -109,6 +125,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
 	this.subDeviceType.unsubscribe();
 	this.subRouterEvents.unsubscribe();
-	this.subProductParentUrl.unsubscribe()
+	this.subProductParentUrl.unsubscribe();
+	this.subSearchBar.unsubscribe();
   }
 }

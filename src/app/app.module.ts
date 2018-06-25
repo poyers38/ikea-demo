@@ -9,7 +9,6 @@ import { BreadcrumbsModule } from "ng6-breadcrumbs";
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderModule } from './header/header.module';
-import { ProductMenuCategoryMobileModule } from './product/product-menu-category-mobile/product-menu-category-mobile.module';
 import { HeaderMobileModule } from './header-mobile/header-mobile.module';
 import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
@@ -18,7 +17,7 @@ import { FooterModule } from './footer/footer.module';
 import { CopyrightModule } from './copyright/copyright.module';
 import { MenubarModule } from './menubar/menubar.module';
 import { IndexComponent } from './index.component';
-//import { ProductService } from './product/product.service';
+import { ProductService } from './product/product.service';
 
 @NgModule({
   declarations: [
@@ -39,11 +38,10 @@ import { IndexComponent } from './index.component';
 	FooterModule,
 	CopyrightModule,
 	MenubarModule,
-	ProductMenuCategoryMobileModule,
 	SharedModule
   ],
   providers: [
-	//productService
+	ProductService
   ],
   bootstrap: [AppComponent],
   exports: [

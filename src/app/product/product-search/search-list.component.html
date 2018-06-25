@@ -1,0 +1,16 @@
+<div class="input-group mb-3">
+  <div class="input-group-append">
+    <button class="btn btn-outline-info" type="button"><i class='fa fa-arrow-left' [routerLink]="['/']"></i></button>
+  </div>
+  <input type="text" class="form-control input-outline-primary" 
+	placeholder="Search here..."
+	aria-label="Search here..." aria-describedby="basic-addon2"
+	#inputSearch (keyup)="keyPresss()"
+  >
+  <div class="input-group-append">
+    <button class="btn btn-outline-info" type="button" (click)="resetSearchText()"><i class='fa fa-close'></i></button>
+  </div>
+</div>
+
+<app-product-list-item *ngFor="let product of products | productSearchFilterPipe:inputSearch3" [props]="{product:product, detailUrl: '../../' + product.menuCategory + '/' + product.menuSubCategory + '/detail', productViewType: 'product-list'}">
+</app-product-list-item>

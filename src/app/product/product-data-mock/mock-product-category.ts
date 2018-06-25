@@ -1,4 +1,4 @@
-import { ProductCategory } from './product-category/product-category.class';
+import { ProductCategory } from '../product-category/product-category.class';
 
 export const PRODUCTCATEGORY: ProductCategory[] = [
  {

@@ -1,4 +1,5 @@
-import { ProductImage } from './product-image';
+import { ProductImage } from '../product-image';
+
 export const PRODUCTIMAGES: ProductImage[] = [
 	{
 		productId: 1,

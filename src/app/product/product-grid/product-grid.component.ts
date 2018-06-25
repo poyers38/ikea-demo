@@ -4,10 +4,10 @@ import { BreadcrumbsService } from 'ng6-breadcrumbs';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-import { Product } from './product';
-import { ProductCategory } from './product-category/product-category.class';
-import { PRODUCTS } from './mock-product';
-import { ProductService } from './product.service';
+import { Product } from '../product';
+import { ProductCategory } from '../product-category/product-category.class';
+import { PRODUCTS } from '../product-data-mock/mock-product';
+import { ProductService } from '../product.service';
 
 class Props {
 	products: Product[];

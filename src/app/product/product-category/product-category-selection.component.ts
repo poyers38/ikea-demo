@@ -5,7 +5,7 @@ import { filter } from 'rxjs/operators';
 
 import { BreadcrumbsService } from 'ng6-breadcrumbs';
 import { ProductCategory } from './product-category.class';
-import { PRODUCTCATEGORY } from '../mock-product-category';
+import { PRODUCTCATEGORY } from '../product-data-mock/mock-product-category';
 import { ProductService } from '../product.service';
 import { Product } from '../product';
 
@@ -14,7 +14,7 @@ import { Product } from '../product';
   templateUrl: './product-category-selection.component.html',
   styleUrls: ['./product-category-selection.component.scss']
 })
-export class ProductCategorySelectionComponent implements OnInit {
+export class ProductCategorySelectionComponent implements OnInit, OnDestroy {
 	category: string;
 	private products: Product[];
 	productCategories: ProductCategory[];

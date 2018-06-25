@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "node_modules/bootstrap/scss/bootstrap";
+$mobile-gap: 1rem;
 
 .navbar {
 	padding-left: 0rem;
@@ -34,14 +35,12 @@
 	border: 0px;
 }
 
-
-
 /*START MOBILE HEADER*/
 
 .mobile-logo {
-	width: 100px;
-	margin-top: 1rem;
-	margin-left: 1rem;
+	width: 70px;
+	margin-top: $mobile-gap;
+	margin-left: $mobile-gap;
 }
 
 .header-mobile {
@@ -51,7 +50,7 @@
 		padding: 0px;
 	}
 	.nav {
-		margin-top: 1rem;
+		margin-top: $mobile-gap;
 		border-top: 1px solid $default-border;
 		border-bottom: 1px solid $default-border;
 	}
@@ -59,7 +58,7 @@
 		color: $dark;
 		font-weight: 400;
 	}
-	
+		
 	.nav-link.active {
 		color: $primary;
 	}
@@ -147,7 +146,7 @@
 	i {
 		font-size: 1.2rem;
 		color: $dark;
-		margin-left: 5px;
+		margin-left: $mobile-gap;
 	}
 	i:hover {
 		cursor: pointer;
@@ -160,11 +159,11 @@
 	text-align: right;
 	i {
 		font-size: 1.2rem;
-		margin-top: 1rem;
-		margin-left: 5px;
+		margin-top: $mobile-gap;
+		margin-left: $mobile-gap;
 	}
 	i:last-child {
-		margin-right: 1rem;
+		margin-right: $mobile-gap;
 	}
 }
 
