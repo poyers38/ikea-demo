@@ -12,6 +12,7 @@ import { ProductService } from '../product/product.service';
 export class TopMenuBarComponent implements OnDestroy 
 {
   isSearchBarMobileOpen: boolean;
+  isSearchBarOpen: boolean;
   deviceType: string;
   subDeviceType: Subscription;
   subSearchBarMobileOpen: Subscription;
@@ -19,6 +20,7 @@ export class TopMenuBarComponent implements OnDestroy
 	private productService: ProductService,
 	private router: Router
   ) { 
+		this.isSearchBarOpen = false;
 		this.subDeviceType = this.productService.deviceType$.subscribe(
 			(data: string) => {
 				this.deviceType = data;
@@ -32,16 +34,10 @@ export class TopMenuBarComponent implements OnDestroy
   }
 
   toggleSearchBar(): void {
-	console.log('toggleSearchBar: ' + this.deviceType);
-    if (this.deviceType == 'mobile') {
-		console.log('toggleSearchBar 222');
-		
+    if (this.deviceType != 'mobile')
+		this.isSearchBarOpen = !this.isSearchBarOpen;
+	else 
 		this.router.navigate(['m.shop/search']);
-		
-	}
-	else {
-		this.productService.changeSearchBarMobile(false);
-	}
   }
   
   ngOnDestroy() {
