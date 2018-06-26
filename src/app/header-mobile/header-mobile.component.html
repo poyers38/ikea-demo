@@ -1,15 +1,29 @@
-<div class="header-mobile">
-	<div class="row">
-		<div class="col col-lg-6">
-			<a [routerLink]="['home']"><img class="mobile-logo" src="./assets/images/logo.svg" alt="Card image cap"></a>
-		</div>
-		<div class="top-menu-mobile">
-			<app-top-menu-bar></app-top-menu-bar>
+<div class="header-mobile-holder">
+	<div *ngIf="!isSearchBarMobileOpen" class="header-mobile">
+		<div class="row">
+			<div class="col col-lg-6">	
+				<a [routerLink]="['home']"><img class="mobile-logo" src="./assets/images/logo.svg" alt="Card image cap"></a>
+			</div>
+			<div class="top-menu-mobile col col-lg-6">
+				<app-top-menu-bar></app-top-menu-bar>
+			</div>
 		</div>
 	</div>
+
+	<div *ngIf="isSearchBarMobileOpen" class="search-mobile">
+		<div class="row">
+			<div class="col col-lg-12">
+				<app-search></app-search>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="header-mobile">
 	<div class="row">
 		<div class="col col-lg-12">
 			<app-menubar-mobile></app-menubar-mobile>
 		</div>
 	</div>
 </div>
+

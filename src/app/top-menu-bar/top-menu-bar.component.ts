@@ -45,7 +45,8 @@ export class TopMenuBarComponent implements OnDestroy
 	else {
 		console.log('this.currentUrl ' + this.router.url);
 		this.productService.changePrevUrl(decodeURIComponent(this.router.url));
-		this.router.navigate(['m.shop/search']);
+		this.productService.changeSearchBarMobile(true);
+		//this.router.navigate(['m.shop/search']);
 	}
   }
   

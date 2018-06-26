@@ -45,7 +45,9 @@ import { ProductService } from './product/product.service';
   ],
   bootstrap: [AppComponent],
   exports: [
-	BreadcrumbsModule
+	BreadcrumbsModule,
+	ProductModule
+	
   ]
 })
 export class AppModule { }

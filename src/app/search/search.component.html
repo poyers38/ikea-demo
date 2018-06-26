@@ -1,0 +1,31 @@
+<div class="container d-inline-flex">
+	<a class="prevUrl" (click)="closeSearch()"><i class='fa fa-arrow-left'></i></a>
+
+	<div class="input-group">
+	  <input type="text" class="form-control input-outline-info" 
+		placeholder="Search here..."
+		aria-label="Search here..." aria-describedby="basic-addon2"
+		#inputSearch (keyup)="keyPresss()"
+	  >
+	  <div class="input-group-append">
+		<button class="btn btn-outline-info" type="button" (click)="resetSearchText()"><i class='fa fa-close'></i></button>
+	  </div>
+	</div>
+</div>
+<div class="search-list-item-mobile" style="padding-left: 30px; background-color: #fff; z-index: 1; position: absolute; left: 0; width: 100%;">
+	<ul class="list-unstyled">
+	  <app-search-list *ngFor="let product of products | productSearchFilterPipe:inputSearch3" [props]="{product:product, detailUrl: '../../' + product.menuCategory + '/' + product.menuSubCategory + '/detail', productViewType: 'product-list'}">	
+	  </app-search-list>
+	</ul>
+</div>
+<!--
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" (click)="dropdownClick()" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Dropdown button
+  </button>
+  <div #dropdownMenu class="dropdown-menu " aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>-->

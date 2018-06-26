@@ -18,7 +18,7 @@ import { ProductCategorySelectionComponent } from './product-category/product-ca
 import { ProductCategorySelectionItemComponent } from './product-category/product-category-selection-item.component';
 import { ProductHomeComponent } from './product-home.component';
 import { ProductCategoryFilterPipe } from './product-category/product-category-filter.pipe';
-import { ProductSearchFilterPipe } from './product-search-filter.pipe';
+//import { ProductSearchFilterPipe } from './product-search-filter.pipe';
 import { ProductBySubCategoryFilterPipe } from './product-sub-category-filter.pipe';
 import { ProductImageFilterPipe } from './product-image-filter.pipe';
 import { ProductFilterPipe } from './product-filter.pipe';
@@ -60,7 +60,7 @@ import { ProductService } from './product.service';
 	SearchListComponent,
 	SearchBarComponent,
 	SearchIndexComponent,
-	ProductSearchFilterPipe
+	//ProductSearchFilterPipe
   ],
   exports: [
 	ShopComponent, 

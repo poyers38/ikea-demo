@@ -81,7 +81,7 @@ export class AppComponent implements
 						i = i + 1;
 						
 					}
-					//console.log('CHANGED URL'	);
+					console.log('CHANGED URL'	);
 					this.router.navigate([this.newUrl]);
 				}
 			}
@@ -98,8 +98,13 @@ export class AppComponent implements
 		this.isSearchBarMobileOpen2 = true;
 	else
 		this.isSearchBarMobileOpen2 = false;
-}
+	}
 
+	click() {
+		console.log("axxxxxaaa");
+	}
+
+	
   ngOnInit() {
 	this.show = true;
 	this.showMobile = false;

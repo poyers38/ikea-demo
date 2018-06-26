@@ -1,25 +1,33 @@
-<div class="container" (window:resize)="onResize($event)">
-	<div *ngIf="!isSearchBarMobileOpen2" class="row">
-		<div class="col col-lg-12">
-			<app-header *ngIf="show"></app-header>
-			<app-header-mobile *ngIf="showMobile"></app-header-mobile>
-			<breadcrumb [allowBootstrap]="true"></breadcrumb>
-		</div>
-	</div>
-	<router-outlet></router-outlet>
-</div>
-
-<app-footer *ngIf="show" ></app-footer>
-<app-footer-mobile *ngIf="showMobile && !isSearchBarMobileOpen2"></app-footer-mobile>
-
-<div *ngIf="show" class="copyright-holder">
-	<div class="copyright">
+<div (window:resize)="onResize($event)">
+	<div *ngIf="show" class="container">
 		<div class="row">
 			<div class="col col-lg-12">
-				<app-copyright ></app-copyright>
+				<app-header ></app-header>
+				<breadcrumb [allowBootstrap]="true"></breadcrumb>
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="showMobile" class="container-fluid">
+		<app-header-mobile ></app-header-mobile>
+		<breadcrumb [allowBootstrap]="true"></breadcrumb>
+	</div>
+
+	<div [ngClass]="{'inactive': isSearchBarMobileOpen}" class="container" >
+		<router-outlet></router-outlet>
+	</div>
+
+	<app-footer *ngIf="show" ></app-footer>
+	<app-footer-mobile *ngIf="showMobile && !isSearchBarMobileOpen2" [ngClass]="{'inactive': isSearchBarMobileOpen}"></app-footer-mobile>
+
+	<div *ngIf="show" class="copyright-holder" [ngClass]="{'inactive': isSearchBarMobileOpen}">
+		<div class="copyright">
+			<div class="row">
+				<div class="col col-lg-12">
+					<app-copyright ></app-copyright>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
 
