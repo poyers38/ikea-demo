@@ -1,0 +1,7 @@
+searchKeyword2222: {{searchKeyword}}
+
+<div class="search-list-item" style="padding-left: 30px; background-color: #fff; z-index: 1; position: absolute; left: 0; width: 100%;">
+<ul class="list-unstyled">
+  <li *ngFor="let search of searches | searchFilterPipe:searchKeyword" (click)="goToSearch()">	{{search.name}} </li>
+</ul>
+</div>

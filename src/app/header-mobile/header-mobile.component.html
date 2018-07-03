@@ -13,13 +13,13 @@
 	<div *ngIf="isSearchBarMobileOpen" class="search-mobile">
 		<div class="row">
 			<div class="col col-lg-12">
-				<app-search></app-search>
+				<!--<app-search></app-search>-->
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="header-mobile">
+<div [ngClass]="{'inactive': isSearchBarMobileOpen}" class="header-mobile">
 	<div class="row">
 		<div class="col col-lg-12">
 			<app-menubar-mobile></app-menubar-mobile>

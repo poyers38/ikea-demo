@@ -9,6 +9,7 @@ import { PRODUCTCATEGORY } from '../product-data-mock/mock-product-category';
 import { ProductService } from '../product.service';
 import { Product } from '../product';
 
+
 @Component({
   selector: 'app-product-category-selection',
   templateUrl: './product-category-selection.component.html',
@@ -29,6 +30,7 @@ export class ProductCategorySelectionComponent implements OnInit, OnDestroy {
 	private subProductParentUrl: Subscription;
 	private subDeviceType: Subscription;
 	private subProductViewType: Subscription; 
+	private subProductParentUrl: Subscription;
 	
 	constructor(
 		private router: Router,
@@ -63,22 +65,22 @@ export class ProductCategorySelectionComponent implements OnInit, OnDestroy {
 	}
 
   ngOnInit() : void {
-	this.productCategories = this.productService.getProductCategories();
-	this.addBreadcrumb();
+		this.productCategories = this.productService.getProductCategories();
+		this.addBreadcrumb();
   }
   
   addBreadcrumb() {
-	this.subRouterParams = this.route.params.subscribe(params => {
-		this.category = params['productCategory']; 
-	});
-	
-	this.products = this.productService.getProducts();
-	this.breadcrumb = [
-		{label: 'shop' , url: '/' + this.productParentUrl + '/', params: []},
-		{label: this.category.toLowerCase() , url: '', params: []},
-	];
-	console.log('cat sel: ' + this.breadcrumb);
-	this.breadcrumbsService.store(this.breadcrumb);
+		this.subRouterParams = this.route.params.subscribe(params => {
+			this.category = params['productCategory']; 
+		});
+		
+		this.products = this.productService.getProducts();
+		this.breadcrumb = [
+			{label: 'products' , url: '/' + this.productParentUrl + '/products/', params: []},
+			{label: this.category.toLowerCase() , url: '', params: []},
+		];
+		console.log('cat sel: ' + this.breadcrumb);
+		this.breadcrumbsService.store(this.breadcrumb);
   }
    
 	removeBreadcrumb() {

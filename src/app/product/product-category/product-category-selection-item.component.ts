@@ -12,7 +12,8 @@ export class ProductCategorySelectionItemComponent implements OnInit {
   @Input() productCategory: ProductCategory;
   se: string;
   @Input() productViewType: string;
-  
+  @Input() productParentUrl: string;
+
   constructor(
 	private _router: Router,
 	private productService: ProductService
@@ -21,9 +22,9 @@ export class ProductCategorySelectionItemComponent implements OnInit {
   ngOnInit() {
   }
 
-   onClicked(prodCat: ProductCategory) {
-		this._router.navigate(['./shop/' + this.productCategory['category'] + '/' + this.productViewType + '/' + this.productCategory['name']]);
-   }
+	onClicked(prodCat: ProductCategory) {
+		this._router.navigate(['./' + this.productParentUrl + '/products/' + this.productCategory['category'] + '/' + this.productViewType + '/' + this.productCategory['name']]);
+	}
 }
 
 

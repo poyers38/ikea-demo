@@ -4,13 +4,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { BreadcrumbsModule } from "ng6-breadcrumbs";
 
+import { ProductRoutingModule } from './product-routing.module';
 import { ProductMenuCategoryMobileModule } from './product-menu-category-mobile/product-menu-category-mobile.module';
 import { ShopComponent } from './shop.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductListItemComponent } from './product-list/product-list-item.component';
 import { ProductGridComponent } from './product-grid/product-grid.component';
 import { ProductGridItemComponent } from './product-grid/product-grid-item.component';	
-import { ProductRoutingModule } from './product-routing.module';
 import { IndexComponent } from './index.component';
 import { DetailComponent } from './product-detail/detail.component';
 import { ProductSidebarComponent } from './product-sidebar/product-sidebar.component';
@@ -28,15 +28,16 @@ import { ProductCategorySelectionItemMobileComponent } from './product-category/
 import { SearchListComponent } from './product-search/search-list.component';
 import { SearchBarComponent } from './product-search/search-bar.component';
 import { SearchIndexComponent } from './product-search/search-index.component';
+import { SearchMainComponent } from '../search/search-main.component';
 import { ProductService } from './product.service';
 
 @NgModule({
   imports: [
     CommonModule,
     ProductRoutingModule,
-	ProductMenuCategoryMobileModule,
-	BreadcrumbsModule,
-	NgbModule
+		ProductMenuCategoryMobileModule,
+		BreadcrumbsModule,
+		NgbModule
   ],
   declarations: [
 	ShopComponent, 
@@ -60,6 +61,7 @@ import { ProductService } from './product.service';
 	SearchListComponent,
 	SearchBarComponent,
 	SearchIndexComponent,
+	SearchMainComponent
 	//ProductSearchFilterPipe
   ],
   exports: [

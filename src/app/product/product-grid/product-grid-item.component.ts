@@ -28,7 +28,7 @@ export class ProductGridItemComponent implements OnInit {
 
 	onClicked(prodDetailUrl: string) {
 		console.log('product');
-		console.log(this.product);
-		this.router.navigate(['shop/' + prodDetailUrl + '/' + this.product['id']]);
+		console.log(prodDetailUrl);
+		this.router.navigate([prodDetailUrl + '/' + this.product['id']]);
 	}
 }

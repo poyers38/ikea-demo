@@ -76,13 +76,12 @@ export class ProductGridComponent implements OnDestroy {
 			this.category = params['productCategory']; 
 			this.subCategory = params['productSubCategory']; 
 		});
-		this.detailUrl = '../../' + this.category + '/' + this.subCategory + '/detail';
+		this.detailUrl = this.productParentUrl + '/products/' + this.category + '/' + this.subCategory + '/detail';
 		this.productCategories = this.productService.getProductCategories();
 		this.products = this.productService.getProducts();
-		//this.myProps.push({ products: this.products, detailUrl: this.detailUrl});
 		this.breadcrumb = [
-		{label: 'shop' , url: '/' + this.productParentUrl + '/', params: []},
-		{label: this.category.toLowerCase() , url: '/' + this.productParentUrl + '/' + this.category, params: []},
+		{label: 'products' , url: '/' + this.productParentUrl + '/products/', params: []},
+		{label: this.category.toLowerCase() , url: '/' + this.productParentUrl + '/products/' + this.category, params: []},
 		{label: this.subCategory.toLowerCase() , url: '', params: []},
 		];
 		console.log('grid breadcrumbs: ' + this.breadcrumb);
@@ -97,7 +96,7 @@ export class ProductGridComponent implements OnDestroy {
 			newProductViewType = 'product-grid';
 			
 		this.productService.changeProductViewType(newProductViewType);	
-		this.router.navigate(['./' + this.productParentUrl + '/' + this.category + '/' + this.productViewType + '/' + this.subCategory]);
+		this.router.navigate(['./' + this.productParentUrl + '/products/' + this.category + '/' + this.productViewType + '/' + this.subCategory]);
 	}
 	
 	removeBreadcrumb() {

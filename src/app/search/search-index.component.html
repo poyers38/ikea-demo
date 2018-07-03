@@ -1,0 +1,10 @@
+<div class="product-search">
+	<div class="row">
+		<div class="col-2">
+			<app-search-filter [props]="props" [products]="products | productSearchFilterPipe:query"></app-search-filter>
+		</div>
+		<div class="col-10">
+			<app-search-list [products]="products | productSearchFilterPipe:query"></app-search-list>
+		</div>
+	</div>
+</div>

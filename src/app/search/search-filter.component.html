@@ -1,0 +1,37 @@
+<div class="product-search-filter">
+		<h2>Color</h2>
+		<a class="reset-filter" *ngIf="queryColor!='' && queryColor!=undefined" (click)="handleColorFilter(null)">All</a>
+		<ul *ngFor="let color of products | productFilterByCategoryPipe:queryCategory | productFilterBySubCategoryPipe:querySubCategory | productColorGroup">
+			<a (click)="handleColorFilter(color.name)">{{color.name}}</a>
+		</ul> 
+		<h2>Product Category</h2> 
+		<a class="reset-filter" *ngIf="querySubCategory!='' && querySubCategory!=undefined" (click)="handleSubCategoryFilter(null)">All</a>
+		<ul *ngFor="let subCategory of products | productFilterByCategoryPipe:queryCategory | productFilterByColorPipe:queryColor | productSubCategoryGroup">
+			<a (click)="handleSubCategoryFilter(subCategory.name)">{{subCategory.name}}</a>
+		</ul>
+		<h2>Department</h2> 
+		<a class="reset-filter" *ngIf="queryCategory!='' && queryCategory!=undefined"  (click)="handleCategoryFilter(null)">All</a>
+		<ul *ngFor="let category of products | productFilterBySubCategoryPipe:querySubCategory | productFilterByColorPipe:queryColor | productCategoryGroup">
+			<a (click)="handleCategoryFilter(category.name)">{{category.name}}</a>
+		</ul>
+</div>
+
+<!--
+<div class="product-search-filter">
+		<h2>Color</h2>
+		<a class="reset-filter" *ngIf="queryColor!='' && queryColor!=undefined" [routerLink]="['/ikea/search/chair']" [queryParams]="{ color: null }" queryParamsHandling="merge">All</a>
+		<ul *ngFor="let color of products | productFilterByCategoryPipe:queryCategory | productFilterBySubCategoryPipe:querySubCategory | productColorGroup">
+			<a [routerLink]="['/ikea/search/chair']" [queryParams]="{ color: color.name }" queryParamsHandling="merge">{{color.name}}</a>
+		</ul> 
+		<h2>Product Category</h2> 
+		<a class="reset-filter" *ngIf="querySubCategory!='' && querySubCategory!=undefined" [routerLink]="['/ikea/search/chair']" [queryParams]="{ subCategory: null }" queryParamsHandling="merge">All</a>
+		<ul *ngFor="let subCategory of products | productFilterByCategoryPipe:queryCategory | productFilterByColorPipe:queryColor | productSubCategoryGroup">
+			<a [routerLink]="['/ikea/search/chair']" [queryParams]="{ subCategory: subCategory.name }" queryParamsHandling="merge">{{subCategory.name}}</a>
+		</ul>
+		<h2>Department</h2> 
+		<a class="reset-filter" *ngIf="queryCategory!='' && queryCategory!=undefined" [routerLink]="['/ikea/search/chair']" [queryParams]="{ category: null }" queryParamsHandling="merge">All</a>
+		<ul *ngFor="let category of products | productFilterBySubCategoryPipe:querySubCategory | productFilterByColorPipe:queryColor | productCategoryGroup">
+			<a [routerLink]="['/ikea/search/chair']" [queryParams]="{ category: category.name }" queryParamsHandling="merge">{{category.name}}</a>
+		</ul>
+</div>
+-->

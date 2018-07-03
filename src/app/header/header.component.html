@@ -1,7 +1,7 @@
 <!--<div appHighlight2 class="dropdown">
   Hello Worl1d! {{ abc }}
 </div> -->
-
+<!--
 <nav class="navbar navbar-expand-lg navbar-light">
   <a class="navbar-brand" [routerLink]="['./']"><img class="logo" src="./assets/images/logo.svg" alt="Card image cap"></a>
  
@@ -12,3 +12,36 @@
 	<app-top-menu-bar></app-top-menu-bar>
   </form>
 </nav>
+-->
+
+<div class="header">
+	<div class="row">
+		<div class="col col-2">
+			<a class="navbar-brand" [routerLink]="['./']"><img class="logo" src="./assets/images/logo.svg" alt="Card image cap"></a>
+		</div> 
+		<div class="col col-8"  [ngStyle]="{'display': isSearchBarOpen == false ? 'block' : 'none'}">
+			 <app-menubar></app-menubar>
+		</div> 
+		<div class="top-menu"  [ngClass]="{'col col-10': isSearchBarOpen}">
+			 <app-top-menu-bar></app-top-menu-bar>
+		</div>
+	</div>
+</div>
+<!--
+<div *ngIf="isSearchBarOpen" class="row">
+	<div class="col col-12">
+		<app-search-pop></app-search-pop>
+	</div> 
+</div>
+-->
+<!--
+<div class="header" style="border: 1px solid #000; padding-top: 0.50rem">
+	<div class="row">
+		<div class="col col-2"  style="border: 1px solid #000">
+			  <a class="navbar-brand" [routerLink]="['./']"><img class="logo" src="./assets/images/logo.svg" alt="Card image cap"></a>
+		</div> 
+		<div class="col col-10"  style="border: 1px solid #000">
+			 <app-top-menu-bar></app-top-menu-bar>
+		</div> 
+	</div>
+</div>-->

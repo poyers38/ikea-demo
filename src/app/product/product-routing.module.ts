@@ -9,12 +9,12 @@ import { IndexComponent } from './index.component';
 import { DetailComponent } from './product-detail/detail.component';
 import { ProductHomeComponent } from './product-home.component';
 import { ProductMenuCategoryMobileComponent } from './product-menu-category-mobile/product-menu-category-mobile.component';
-import { SearchIndexComponent } from './product-search/search-index.component';
+import { SearchMainComponent } from '../search/search-main.component';
 
 @NgModule({
 	imports: [RouterModule.forChild([
 		{ 
-			path: 'shop', 
+			path: 'ikea/products', 
 			component: ShopComponent,
 			children: [
 				{ 
@@ -57,18 +57,17 @@ import { SearchIndexComponent } from './product-search/search-index.component';
 			]
 		},
 		{ 
-			path: 'shop/:productCategory/:productSubCategory/detail/:productCode', 
+			path: 'ikea/products/:productCategory/:productSubCategory/detail/:productCode', 
 			component: DetailComponent
 		},
 		{ 
-			path: 'm.shop', 
+			path: 'm.ikea/products/:productCategory/:productSubCategory/detail/:productCode', 
+			component: DetailComponent
+		},
+		{ 
+			path: 'm.ikea/products', 
 			component: ShopMobileComponent,
 			children: [
-				{ 
-					path: 'search', 
-					component: SearchIndexComponent,	
-					pathMatch: 'full'
-				},
 				{ 
 					path: ':productCategory', 
 					component: ProductCategorySelectionComponent,

@@ -1,7 +1,8 @@
-<li (click)="onClicked(productDetailUrl)"  class="media">
-<img class="mr-3" src="{{product['imgFilename']}}" alt="Generic placeholder image">
-<div class="media-body">
-  <p class="prod-title">{{product["name"]}}</p>
-  <p class="prod-desc"> {{product["desc"]}}</p>
+
+<h3>Result</h3> 
+<!--<a [routerLink]="['/ikea/search/chair']" [queryParams]="{ category: null }" queryParamsHandling="merge">All</a>-->
+<div class="card-group" >
+	<div class="col-4" *ngFor="let product of products | productFilterByColorPipe:queryColor | productFilterByCategoryPipe:queryCategory | productFilterBySubCategoryPipe:querySubCategory">
+		<app-search-list-item [product]="product"></app-search-list-item>
+	</div>
 </div>
-</li>

@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { Product } from '../product/product';
 import { ProductService } from '../product/product.service';
@@ -10,37 +11,41 @@ import { ProductService } from '../product/product.service';
 })
 
 export class SearchListComponent implements OnInit, OnDestroy {
-	@Input() props: { product: Product[]; detailUrl: string; productViewType: string; };
-	product: Product[];
-	productDetailUrl: string;
-	private productViewType: string;
-	productViewType2: string;
-	private sub: any;
-	deviceType: string;
+	@Input() products: Product[];
+	@Input() props: any[];
+	subRouterParams: Subscription;
+	queryCategory: string;
+	querySubCategory: string;
+	queryColor: string; 
 	
 	constructor(
 		private router: Router,
-		private productService: ProductService
+		private productService: ProductService,
+		private route: ActivatedRoute
 	) {
-		this.sub = this.productService.deviceType$.subscribe(
-			(data: string) => {
-				this.deviceType = data;
+		this.subRouterParams = this.route.queryParams.subscribe(
+			(params: string) => {
+				this.queryCategory = params['category'];
+				this.querySubCategory = params['subCategory'];
+				this.queryColor = params['color'];
 			}
-		)
+		);
+			if (this.queryCategory == undefined) 
+				this.queryCategory = '';
+			if (this.querySubCategory == undefined) 
+				this.querySubCategory = '';
+			if (this.queryColor == undefined) 
+				this.queryColor = '';
 	}
 
 	ngOnInit() {
-		this.product = this.props.product;
-		this.productDetailUrl = this.props.detailUrl;
-	}
-
-	onClicked(prodDetailUrl: string) {
-		this.productService.changeSearchBarMobile(false);
-		this.router.navigate(['shop/' + prodDetailUrl + '/' + this.product['id']]);
+		console.log('products');
+		console.log(this.products);
 	}
 	
 	ngOnDestroy() {
-		this.sub.unsubscribe();
+		this.subRouterParams.unsubscribe();
 	}
+	
 }
 

@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BreadcrumbsModule } from "ng6-breadcrumbs";
-import { AppComponent } from './app.component';
+
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderModule } from './header/header.module';
 import { HeaderMobileModule } from './header-mobile/header-mobile.module';
@@ -16,8 +16,12 @@ import { ProductModule } from './product/product.module';
 import { FooterModule } from './footer/footer.module';
 import { CopyrightModule } from './copyright/copyright.module';
 import { MenubarModule } from './menubar/menubar.module';
+import { SearchModule } from './search/search.module';
+
 import { IndexComponent } from './index.component';
+import { AppComponent } from './app.component';
 import { ProductService } from './product/product.service';
+import { ProductCategoryFilterPipe } from './product/product-category/product-category-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -26,28 +30,27 @@ import { ProductService } from './product/product.service';
   ],
   imports: [
     BrowserModule,
-	HttpModule,
-	ReactiveFormsModule,
-	RouterModule,
-	BreadcrumbsModule,
-	AppRoutingModule,
-	HeaderModule,
-	HeaderMobileModule,
-	HomeModule,
-	ProductModule,
-	FooterModule,
-	CopyrightModule,
-	MenubarModule,
-	SharedModule
+		HttpModule,
+		ReactiveFormsModule,
+		RouterModule,
+		BreadcrumbsModule,
+		AppRoutingModule,
+		HeaderModule,
+		HeaderMobileModule,
+		HomeModule,
+		ProductModule,
+		FooterModule,
+		CopyrightModule,
+		MenubarModule,
+		SharedModule
   ],
   providers: [
-	ProductService
+		ProductService
   ],
   bootstrap: [AppComponent],
   exports: [
-	BreadcrumbsModule,
-	ProductModule
-	
+		BreadcrumbsModule,
+		ProductModule
   ]
 })
 export class AppModule { }

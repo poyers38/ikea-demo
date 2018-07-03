@@ -79,14 +79,13 @@ export class DetailComponent implements OnInit {
 	}
 	
 	changePhoto(imgPath: string) {
-		console.log(imgPath);
 		this.imageCarousel.nativeElement.src = imgPath;
 	}
 	addBreadcrumb() {
 		this.breadcrumb = [
-			{label: 'shop' , url: '/' + this.productParentUrl + '/', params: []},
-			{label: this.category.toLowerCase() , url: '/' + this.productParentUrl + '/' + this.category, params: []},
-			{label: this.subCategory.toLowerCase(), url: '/' + this.productParentUrl + '/' + this.category + '/' + this.productViewType + '/' + this.subCategory, params: []},
+			{label: 'products' , url: '/' + this.productParentUrl + '/products/', params: []},
+			{label: this.category.toLowerCase() , url: '/' + this.productParentUrl + '/products/' + this.category, params: []},
+			{label: this.subCategory.toLowerCase(), url: '/' + this.productParentUrl + '/products/' + this.category + '/' + this.productViewType + '/' + this.subCategory, params: []},
 			{label: this.productCode , url: '', params: []},
 		];
 		this.breadcrumbsService.store(this.breadcrumb);

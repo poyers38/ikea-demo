@@ -3,6 +3,22 @@ button i {
 	margin-left: 0px;
 }
 
+.btn {
+	height: 100%;
+}
 .form-control {
 	padding: 0.25rem 0.50rem
+}
+
+.input-group {
+	margin-top: .80rem;
+	height: 40px
+}
+
+input {
+	border: 0px;box-shadow: none !important;
+}
+.form-control input {
+	border: 0px;
+	box-shadow: none !important;
 }
