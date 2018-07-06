@@ -1,0 +1,9 @@
+<div class="search-bar input-group" [ngClass]="{'search-bar': !isSearchBarMobileOpen, 'search-bar-mobile': isSearchBarMobileOpen}">
+	<div *ngIf="!isSearchBarMobileOpen" class="input-group-append">
+		<button class="btn btn-outline-info" type="button" (click)="closeSearchBar()"><i class='fa fa-close'></i></button>
+	</div>
+	<input #inputSearch (keyup)="onKeyPress()" class="-webkit-appearance: none;" type="text" class="form-control input-outline-info" placeholder="Search here..." aria-label="Search here..." aria-describedby="basic-addon2">
+	<div class="input-group-append">
+		<button (click)="handleSearch()" class="btn btn-outline-info" type="button"><i class='fa fa-search'></i></button>
+	</div>
+</div>

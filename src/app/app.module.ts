@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule} from "@angular/forms";
 import { RouterModule } from '@angular/router';
 
+import { ModalModule } from 'ngx-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BreadcrumbsModule } from "ng6-breadcrumbs";
 
@@ -16,17 +17,24 @@ import { ProductModule } from './product/product.module';
 import { FooterModule } from './footer/footer.module';
 import { CopyrightModule } from './copyright/copyright.module';
 import { MenubarModule } from './menubar/menubar.module';
+//import { TopMenuBarModule } from './top-menu-bar/top-menu-bar.module';
 import { SearchModule } from './search/search.module';
+//import { SearchBarComponent } from './search/search-bar.component';
 
 import { IndexComponent } from './index.component';
 import { AppComponent } from './app.component';
 import { ProductService } from './product/product.service';
 import { ProductCategoryFilterPipe } from './product/product-category/product-category-filter.pipe';
+import { ModalContentComponent } from './modal.component';
+import { SearchFilterColorModalComponent } from './search/search.modals/search-filter-color-modal.component';
+import { SearchFilterCategoryModalComponent } from './search/search.modals/search-filter-category-modal.component';
+import { SearchFilterSubCategoryModalComponent } from './search/search.modals/search-filter-sub-category-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    IndexComponent
+    IndexComponent,
+		ModalContentComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +50,9 @@ import { ProductCategoryFilterPipe } from './product/product-category/product-ca
 		FooterModule,
 		CopyrightModule,
 		MenubarModule,
-		SharedModule
+		SharedModule,
+		//TopMenuBarModule,
+		ModalModule.forRoot()
   ],
   providers: [
 		ProductService
@@ -50,7 +60,15 @@ import { ProductCategoryFilterPipe } from './product/product-category/product-ca
   bootstrap: [AppComponent],
   exports: [
 		BreadcrumbsModule,
-		ProductModule
-  ]
+		ProductModule,
+		ModalModule,
+		ModalContentComponent
+  ],
+	entryComponents: [
+		ModalContentComponent,
+		SearchFilterColorModalComponent,
+		SearchFilterCategoryModalComponent,
+		SearchFilterSubCategoryModalComponent
+	]
 })
 export class AppModule { }

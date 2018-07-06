@@ -1,0 +1,67 @@
+<p *ngIf="query" class="font-weight-bold">
+	Search results for "{{query}}",
+	{{(products | productFilterByColorPipe:queryColor | productFilterByCategoryPipe:queryCategory | productFilterBySubCategoryPipe:querySubCategory).length}} {{products.length > 1 ? 'matches' : 'match'}}
+</p>
+<table class="filter-mobile">
+	<thead>
+		<tr (click)="toggleFilter()" [ngClass]="{ 'filter-header-bottom-border': filterState }">
+			<th colspan="3"> 
+				FILTER
+				<i *ngIf="!filterState" class="fa fa-angle-down"></i>
+				<i *ngIf="filterState" class="fa fa-angle-up"></i>
+			</th>
+		</tr>
+	</thead>
+	<tbody *ngIf="filterState">
+		<tr (click)="openColorSelectionModal()">
+			<td>Color</td>
+			<td>{{queryColor || 'All colors'}}</td>
+			<td class="text-right"><i class="fa fa-angle-right"></i></td>
+		</tr>
+		<tr (click)="openSubCategorySelectionModal()">
+			<td>Category</td>
+			<td>{{querySubCategory || 'All categories'}}</td>
+			<td class="text-right"><i class="fa fa-angle-right"></i></td>
+		</tr>
+		<tr (click)="openCategorySelectionModal()">
+			<td>Department</td>
+			<td>{{queryCategory || 'All departments'}}</td>
+			<td class="text-right"><i class="fa fa-angle-right"></i></td>
+		</tr>
+		<tr [ngClass]="{'d-none': !showResetFilter}">
+			<td colspan="3"> 
+				<a (click)="handleClearFilter()">Clear filter</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+	<!--<form>
+		<div class="form-group row filter-header" (click)="toggleFilter()" [ngClass]="{'filter-header-border': filterState}">
+			<label for="inputEmail3" class="col-sm-12 col-form-label">
+				Filter
+				<i *ngIf="!filterState" class="fa fa-caret-down"></i>
+				<i *ngIf="filterState" class="fa fa-caret-up"></i>
+			</label>
+		</div>
+		
+		<div class="form-group row" (click)="openColorSelectionModal()" *ngIf="filterState">
+			<label for="inputEmail3" class="col-sm-3 col-form-label">Color</label>
+			<div class="col-sm-9">
+				<input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="{{queryColor || 'All colors'}}">
+			</div>
+		</div>
+		
+		<div class="form-group row" (click)="openSubCategorySelectionModal()" *ngIf="filterState">
+			<label for="inputEmail3" class="col-sm-3 col-form-label">Category</label>
+			<div class="col-sm-9">
+				<input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="{{querySubCategory || 'All categories'}}">
+			</div>
+		</div>
+		
+		<div class="form-group row" (click)="openCategorySelectionModal()" *ngIf="filterState">
+			<label for="inputEmail3" class="col-sm-3 col-form-label">Department</label>
+			<div class="col-sm-9">
+				<input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="{{queryCategory || 'All departments'}}">
+			</div>
+		</div>
+	</form>-->

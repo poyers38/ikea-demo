@@ -1,16 +1,9 @@
 <div class="container">
-	<div *ngIf="!isSearchBarMobileOpen && !isSearchBarOpen" style="font-size:1em; color:#000000">
+	<div *ngIf="!isSearchBarOpen" style="font-size:1em; color:#000000">
 		<i (click)="toggleSearchBar()" class="fa fa-search"></i>
 		<i class="fa fa-truck"></i>
 		<i class="fa fa-shopping-cart"></i>
 	</div>
-	<div *ngIf="isSearchBarOpen" class="input-group mb-3">
-	  <div class="input-group-append">
-		<button class="btn btn-outline-info" type="button" (click)="toggleSearchBar()"><i class='fa fa-close'></i></button>
-	  </div>
-	  <input #inputSearch (keyup)="onKeyPress()" type="text" class="form-control input-outline-primary" placeholder="Search here..." aria-label="Search here..." aria-describedby="basic-addon2">
-	  <div class="input-group-append">
-		<button (click)="handleSearch()" class="btn btn-outline-info" (click)="onSearch()" type="button"><i class='fa fa-search'></i></button>
-	  </div>
-	</div>
+	<div *ngIf="isSearchBarOpen && deviceType != 'mobile'">
+		<app-search-bar></app-search-bar>
 </div>

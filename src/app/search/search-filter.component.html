@@ -1,18 +1,27 @@
 <div class="product-search-filter">
 		<h2>Color</h2>
-		<a class="reset-filter" *ngIf="queryColor!='' && queryColor!=undefined" (click)="handleColorFilter(null)">All</a>
-		<ul *ngFor="let color of products | productFilterByCategoryPipe:queryCategory | productFilterBySubCategoryPipe:querySubCategory | productColorGroup">
-			<a (click)="handleColorFilter(color.name)">{{color.name}}</a>
+		<ul>
+			<a class="reset-filter" *ngIf="queryColor!='' && queryColor!=undefined" (click)="handleColorFilter(null)">View all</a>
+			<a *ngFor="let color of products | productFilterByCategoryPipe:queryCategory | productFilterBySubCategoryPipe:querySubCategory | productColorGroup" 
+				(click)="handleColorFilter(color.name)" 
+				[ngClass]="{'active': color.name == queryColor && queryColor != ''}">{{color.name}}
+			</a>
 		</ul> 
-		<h2>Product Category</h2> 
-		<a class="reset-filter" *ngIf="querySubCategory!='' && querySubCategory!=undefined" (click)="handleSubCategoryFilter(null)">All</a>
-		<ul *ngFor="let subCategory of products | productFilterByCategoryPipe:queryCategory | productFilterByColorPipe:queryColor | productSubCategoryGroup">
-			<a (click)="handleSubCategoryFilter(subCategory.name)">{{subCategory.name}}</a>
+		<h2>Product Category</h2>
+		<ul>
+			<a class="reset-filter" *ngIf="querySubCategory!='' && querySubCategory!=undefined" (click)="handleSubCategoryFilter(null)">View all</a>
+			<a *ngFor="let subCategory of products | productFilterByCategoryPipe:queryCategory | productFilterByColorPipe:queryColor | productSubCategoryGroup" 
+				(click)="handleSubCategoryFilter(subCategory.name)"
+				[ngClass]="{'active': subCategory.name == querySubCategory && querySubCategory != ''}">{{subCategory.name}}
+			</a>
 		</ul>
-		<h2>Department</h2> 
-		<a class="reset-filter" *ngIf="queryCategory!='' && queryCategory!=undefined"  (click)="handleCategoryFilter(null)">All</a>
-		<ul *ngFor="let category of products | productFilterBySubCategoryPipe:querySubCategory | productFilterByColorPipe:queryColor | productCategoryGroup">
-			<a (click)="handleCategoryFilter(category.name)">{{category.name}}</a>
+		<h2>Department</h2>
+		<ul>
+			<a class="reset-filter" *ngIf="queryCategory!='' && queryCategory!=undefined"  (click)="handleCategoryFilter(null)">View all</a>
+			<a *ngFor="let category of products | productFilterBySubCategoryPipe:querySubCategory | productFilterByColorPipe:queryColor | productCategoryGroup" 
+				(click)="handleCategoryFilter(category.name)"
+				[ngClass]="{'active': category.name == queryCategory && queryCategory != ''}">{{category.name}}
+			</a>
 		</ul>
 </div>
 

@@ -40,40 +40,40 @@ import { ProductService } from './product.service';
 		NgbModule
   ],
   declarations: [
-	ShopComponent, 
-	ProductListComponent, 
-	ProductGridComponent, 
-	IndexComponent, 
-	DetailComponent, 
-	ProductGridItemComponent, 
-	ProductListItemComponent, 
-	ProductSidebarComponent, 
-	ProductCategorySelectionComponent, 
-	ProductCategorySelectionItemComponent,
-	ProductHomeComponent,
-	ProductCategoryFilterPipe,
-	ProductBySubCategoryFilterPipe,
-	ProductImageFilterPipe,
-	ProductFilterPipe,
-	ProductSidebarMobileComponent,
-	ShopMobileComponent,
-	ProductCategorySelectionItemMobileComponent,
-	SearchListComponent,
-	SearchBarComponent,
-	SearchIndexComponent,
-	SearchMainComponent
-	//ProductSearchFilterPipe
+		ShopComponent, 
+		ProductListComponent, 
+		ProductGridComponent, 
+		IndexComponent, 
+		DetailComponent, 
+		ProductGridItemComponent, 
+		ProductListItemComponent, 
+		ProductSidebarComponent, 
+		ProductCategorySelectionComponent, 
+		ProductCategorySelectionItemComponent,
+		ProductHomeComponent,
+		ProductCategoryFilterPipe,
+		ProductBySubCategoryFilterPipe,
+		ProductImageFilterPipe,
+		ProductFilterPipe,
+		ProductSidebarMobileComponent,
+		ShopMobileComponent,
+		ProductCategorySelectionItemMobileComponent,
+		SearchListComponent,
+		SearchBarComponent,
+		SearchIndexComponent,
+		SearchMainComponent
+		//ProductSearchFilterPipe
   ],
   exports: [
-	ShopComponent, 
-	ProductListComponent, 
-	ProductGridComponent,
-	ProductCategorySelectionComponent,
-	ProductCategoryFilterPipe,
-	BreadcrumbsModule
+		ShopComponent, 
+		ProductListItemComponent, 
+		ProductGridComponent,
+		ProductCategorySelectionComponent,
+		ProductCategoryFilterPipe,
+		BreadcrumbsModule
   ], 
   providers: [
-	NgbCarouselConfig
+		NgbCarouselConfig
   ]
 })
 

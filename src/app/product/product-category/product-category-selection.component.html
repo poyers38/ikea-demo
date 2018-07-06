@@ -1,9 +1,20 @@
 <div *ngIf="deviceType == 'pc'; then thenBlock; else elseBlock">this is ignored</div>
 <ng-template #thenBlock>
-	<div class="product-category-card-columns">
-		<app-product-category-selection-item *ngFor="let productCategory of productCategories | productCategoryFilterPipe:category" [productParentUrl]=[productParentUrl] [productCategory]=productCategory [productViewType]=productViewType></app-product-category-selection-item>
+	<!--<div class="product-category-card-columns">
+		<app-product-category-selection-item *ngFor="let productCategory of productCategories | productCategoryFilterPipe:category" [prodCatProps]="{productCategory: productCategory, parentUrl: parentUrl, productViewType: productViewType}"></app-product-category-selection-item>
+	</div>-->
+	<div class="card-group">
+		<div class="col-4" *ngFor="let productCategory of productCategories | productCategoryFilterPipe:category" >
+			<app-product-category-selection-item [prodCatProps]="{productCategory: productCategory, parentUrl: parentUrl, productViewType: productViewType}"></app-product-category-selection-item>
+		</div>
 	</div>
+	
 </ng-template>
 <ng-template #elseBlock>
-	<app-product-category-selection-item-mobile [productCategories]="productCategories | productCategoryFilterPipe:category" [productCategory]="category" [productViewType]=productViewType></app-product-category-selection-item-mobile>
+	<app-product-category-selection-item-mobile [productCategories]="productCategories | productCategoryFilterPipe:category" [productCategory]="category" [productViewType]="productViewType"></app-product-category-selection-item-mobile>
 </ng-template>
+
+
+
+
+	

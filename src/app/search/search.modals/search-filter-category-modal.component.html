@@ -1,0 +1,21 @@
+<div class="modal-header">
+	<h4 class="modal-title pull-left">{{title}}</h4>
+	<button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<div class="modal-body">
+	<div class="form-check" (click)="handleSelectedFilter(null)">
+		<input class="form-check-input" type="radio" [checked]="queryCategory == ''">
+		<label class="form-check-label" for="exampleRadios1">All departments</label>
+	</div>
+	<div class="form-check"
+		*ngFor="let category of products | productFilterBySubCategoryPipe:querySubCategory | productFilterByColorPipe:queryColor | productCategoryGroup;let i = index"
+		(click)="handleSelectedFilter(category.name)">
+		<input class="form-check-input" type="radio" [checked]="category.name == queryCategory && queryCategory != ''">
+		<label class="form-check-label" for="exampleRadios1">{{category.name}}</label>
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+</div>

@@ -14,7 +14,7 @@ $container-max-widths: (
   lg: 1140px,
   xl: 1140px,
 );
-
+$info:          $gray-100 !default;
 $primary-border:       #ccccff;
 $default-border:       #dcdcdc;
 $link-hover-color:          darken($link-color, 50%);

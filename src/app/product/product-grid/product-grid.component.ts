@@ -23,7 +23,7 @@ export class ProductGridComponent implements OnDestroy {
 	products: Product[];
 	productCategories: ProductCategory[];
 	category: string;
-    subCategory: string;
+	subCategory: string;
 	private subDeviceType: Subscription;
 	private subProductParentUrl: Subscription;
 	private subProductViewType: Subscription;
@@ -60,11 +60,11 @@ export class ProductGridComponent implements OnDestroy {
 			}
 		)
 		this.subRouterEvents = this.router.events.pipe(
-            filter(event => event instanceof NavigationEnd)
-        ).subscribe((route: ActivatedRoute) => {
+				filter(event => event instanceof NavigationEnd)
+		).subscribe((route: ActivatedRoute) => {
 			this.addBreadcrumb();
 			window.scrollTo(0, 0)
-        });
+		});
 	}
 	
 	ngOnInit() {

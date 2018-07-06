@@ -9,6 +9,11 @@ import { PRODUCTCATEGORY } from '../product-data-mock/mock-product-category';
 import { ProductService } from '../product.service';
 import { Product } from '../product';
 
+class ProdCatProps {
+	productCategory: ProductCategory[];
+	parentUrl: string;
+	productViewType: string;
+}
 
 @Component({
   selector: 'app-product-category-selection',
@@ -23,14 +28,13 @@ export class ProductCategorySelectionComponent implements OnInit, OnDestroy {
 	private displayViewOption: boolean;
 	deviceType: string;
 	private productViewType: string;
-	private productParentUrl: string;
-	
+	private parentUrl: string;
+	prodCatProps: ProdCatProps[];
 	private subRouterEvents: Subscription;
 	private subRouterParams: Subscription;
 	private subProductParentUrl: Subscription;
 	private subDeviceType: Subscription;
 	private subProductViewType: Subscription; 
-	private subProductParentUrl: Subscription;
 	
 	constructor(
 		private router: Router,
@@ -52,7 +56,7 @@ export class ProductCategorySelectionComponent implements OnInit, OnDestroy {
 		)
 		this.subProductParentUrl = this.productService.productParentUrl$.subscribe(
 			(data: string) => {
-				this.productParentUrl = data;
+				this.parentUrl = data;
 				this.addBreadcrumb();
 			}
 		)
@@ -67,16 +71,19 @@ export class ProductCategorySelectionComponent implements OnInit, OnDestroy {
   ngOnInit() : void {
 		this.productCategories = this.productService.getProductCategories();
 		this.addBreadcrumb();
+		console.log(this.productCategories);
   }
   
   addBreadcrumb() {
 		this.subRouterParams = this.route.params.subscribe(params => {
 			this.category = params['productCategory']; 
 		});
-		
+		if (this.category == undefined) 
+			this.category = '';
+			
 		this.products = this.productService.getProducts();
 		this.breadcrumb = [
-			{label: 'products' , url: '/' + this.productParentUrl + '/products/', params: []},
+			{label: 'products' , url: '/' + this.parentUrl + '/products/', params: []},
 			{label: this.category.toLowerCase() , url: '', params: []},
 		];
 		console.log('cat sel: ' + this.breadcrumb);

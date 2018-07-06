@@ -9,7 +9,7 @@ import { ProductService } from '../product/product.service';
   templateUrl: './header-mobile.component.html',
   styleUrls: ['./header-mobile.component.scss']
 })
-export class HeaderMobileComponent implements OnInit {
+export class HeaderMobileComponent implements OnInit, OnDestroy {
   isSearchBarMobileOpen: boolean;
   subSearchBarMobileOpen: Subscription;
   constructor(
@@ -27,6 +27,6 @@ export class HeaderMobileComponent implements OnInit {
   }
   
   ngOnDestroy() {
-	this.subSearchBarMobileOpen.unsubscribe();
+		this.subSearchBarMobileOpen.unsubscribe();
   }
 }

@@ -1,0 +1,25 @@
+<div class="modal-header">
+	<h4 class="modal-title pull-left">{{title}}</h4>
+	<button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<div class="modal-body">
+	<!--<ul *ngFor="let subCategory of products | productFilterBySubCategoryPipe:querySubCategory | productFilterByColorPipe:queryColor | productSubCategoryGroup; let i = index">
+		<a *ngIf="i === 0" class="reset-filter" (click)="handleSelectedFilter(null)">All</a>
+		<a *ngIf="i != 0"(click)="handleSelectedFilter(subCategory.name)">{{subCategory.name}}</a>
+	</ul>-->
+	<div class="form-check" (click)="handleSelectedFilter(null)">
+		<input class="form-check-input" type="radio" [checked]="querySubCategory == ''">
+		<label class="form-check-label" for="exampleRadios1">All categories</label>
+	</div>
+	<div class="form-check"
+		*ngFor="let subCategory of products | productFilterBySubCategoryPipe:querySubCategory | productFilterByColorPipe:queryColor | productSubCategoryGroup; let i = index"
+		(click)="handleSelectedFilter(subCategory.name)">
+		<input class="form-check-input" type="radio" [checked]="subCategory.name == querySubCategory && querySubCategory != ''">
+		<label class="form-check-label" for="exampleRadios1">{{subCategory.name}}</label>
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+</div>

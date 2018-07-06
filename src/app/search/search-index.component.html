@@ -1,4 +1,4 @@
-<div class="product-search">
+<!--<div class="product-search">
 	<div class="row">
 		<div class="col-2">
 			<app-search-filter [props]="props" [products]="products | productSearchFilterPipe:query"></app-search-filter>
@@ -7,4 +7,30 @@
 			<app-search-list [products]="products | productSearchFilterPipe:query"></app-search-list>
 		</div>
 	</div>
+</div>-->
+
+<div *ngIf="deviceType == 'pc'; then thenBlock; else elseBlock">this is ignored</div>
+<ng-template #thenBlock>
+	<div class="product-search">
+	<div class="row">
+		<div class="col-2">
+			<app-search-filter [parentUrl]="parentUrl" [products]="products | productSearchFilterPipe:query"></app-search-filter>
+		</div>
+		<div class="col-10">
+			<app-search-list [parentUrl]="parentUrl" [products]="products | productSearchFilterPipe:query"></app-search-list>
+		</div>
+	</div>
 </div>
+</ng-template>
+<ng-template #elseBlock>
+	<div class="product-search-mobile">
+	<div class="row">
+		<div class="col-12">
+			<app-search-filter-mobile [parentUrl]="parentUrl" [products]="products | productSearchFilterPipe:query"></app-search-filter-mobile>
+		</div>
+		<div class="col-12">
+			<app-search-list [parentUrl]="parentUrl" [products]="products | productSearchFilterPipe:query"></app-search-list>
+		</div>
+	</div>
+</div>
+</ng-template>

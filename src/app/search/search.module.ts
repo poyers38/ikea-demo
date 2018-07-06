@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { GroupByPipe } from './search.pipes/groupBy.pipe';
 import { productCategoryGroupPipe } from './search.pipes/product-category-group.pipe';
 import { productSubCategoryGroupPipe } from './search.pipes/product-sub-category-group.pipe';
 import { productColorGroupPipe } from './search.pipes/product-color-group.pipe';
@@ -18,16 +17,22 @@ import { SearchPopItemComponent } from './search-pop-item.component';
 import { SearchFilterPipe } from './search-filter.pipe';
 import { SearchService } from './search.service';
 import { SearchIndexComponent } from './search-index.component';
-import { SearchMobileIndexComponent } from './search-mobile-index.component';
 import { SearchSidebarComponent } from './search-sidebar.component';
 import { SearchListItemComponent } from './search-list-item.component';
 import { SearchFilterComponent } from './search-filter.component';
+import { SearchFilterMobileComponent } from './search-filter-mobile.component';
+import { SearchBarComponent } from './search-bar.component';
+import { ProductModule } from '../product/product.module';
+import { SearchFilterColorModalComponent } from './search.modals/search-filter-color-modal.component';
+import { SearchFilterCategoryModalComponent } from './search.modals/search-filter-category-modal.component';
+import { SearchFilterSubCategoryModalComponent } from './search.modals/search-filter-sub-category-modal.component';
 
 @NgModule({
   imports: [
     CommonModule,
 		RouterModule,
-		SearchRoutingModule
+		SearchRoutingModule,
+		ProductModule
   ],
   declarations: [ 
 		SearchListComponent,
@@ -41,20 +46,22 @@ import { SearchFilterComponent } from './search-filter.component';
 		SearchPopItemComponent,
 		SearchFilterPipe,
 		SearchIndexComponent,
-		SearchMobileIndexComponent,
-		GroupByPipe,
 		productCategoryGroupPipe,
 		productSubCategoryGroupPipe,
 		SearchSidebarComponent,
 		SearchListItemComponent,
-		SearchFilterComponent
+		SearchFilterComponent,
+		SearchFilterMobileComponent,
+		SearchBarComponent,
+		SearchFilterColorModalComponent,
+		SearchFilterCategoryModalComponent,
+		SearchFilterSubCategoryModalComponent
   ],
   exports: [
 		SearchListComponent,
 		SearchPopComponent,
 		ProductSearchFilterPipe,
 		SearchFilterPipe,
-		GroupByPipe,
 		productCategoryGroupPipe,
 		productSubCategoryGroupPipe,
 		productColorGroupPipe,
@@ -62,7 +69,8 @@ import { SearchFilterComponent } from './search-filter.component';
 		ProductFilterByCategoryPipe,
 		ProductFilterBySubCategoryPipe,
 		ProductFilterByColorPipe,
-		SearchFilterComponent
+		SearchFilterComponent,
+		SearchBarComponent
   ],
   providers: [
 		SearchService

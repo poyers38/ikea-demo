@@ -46,30 +46,27 @@ export class DetailComponent implements OnInit {
 			this.productCode = params['productCode']; 
 			
 		});
-		
 		this.subProductParentUrl = this.productService.productParentUrl$.subscribe(
 			(data: string) => {
 				this.productParentUrl = data;
 			}
-		)
+		);
 		this.subDeviceType = this.productService.deviceType$.subscribe(
 			(data: string) => {
 				this.deviceType = data;
 			}
-		)	
+		);
 		this.subProductViewType = this.productService.productViewType$.subscribe(
 			(data: string) => {
 				this.productViewType = data;
 			}
 		)	
-		
 		this.subRouterEvents = this.router.events.pipe(
-            filter(event => event instanceof NavigationEnd)
-        ).subscribe((route: ActivatedRoute) => {
-            this.addBreadcrumb();
+			filter(event => event instanceof NavigationEnd)
+		).subscribe((route: ActivatedRoute) => {
+			this.addBreadcrumb();
 			window.scrollTo(0, 0)
-        });
-
+		});
 	}
 
 	ngOnInit() {
@@ -81,6 +78,7 @@ export class DetailComponent implements OnInit {
 	changePhoto(imgPath: string) {
 		this.imageCarousel.nativeElement.src = imgPath;
 	}
+	
 	addBreadcrumb() {
 		this.breadcrumb = [
 			{label: 'products' , url: '/' + this.productParentUrl + '/products/', params: []},

@@ -1,50 +1,54 @@
- import {Component,Pipe} from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { ModalContentComponent } from './modal.component';
+ 
 @Component({
-	selector: 'my-app',
-	template: `
-	
-    <!--<div *ngFor="let group of resources | groups">
-      <h3>{{group.name}}</h3>
-      <ul>
-        <li *ngFor="let resource of group.resources">{{resource.name}}</li>
-      </ul>
-    </div>
-    <select>
-        <optgroup *ngFor="let item of itemSource3 | groupBy: 'league'" label="{{item.key}}">
-            <option *ngFor="let group of item.value">
-                {{group.name}}
-            </option>
-        </optgroup>
-    </select>
-    <div *ngFor="let item of resources | groupBy: 'group' ">
-       group {{ item.key }} has {{ item.value.length }} name
-    </div>-->
-  `,
+  selector: 'my-app',
+  templateUrl: './index.component.html'
 })
 export class IndexComponent {
-  constructor() {
-    this.resources = [
-        {name: "metal", group: "factory"},
-        {name: "plastic", group: "factory"},
-        {name: "shovel", group: "hardware store"},
-        {name: "ladder", group: "hardware store"}
-    ];
-    
-     this.itemSource3 = [
-                  {league: "EPL", name: "Arsenal", id: 11},
-                  {league: "EPL", name: "Liverpool", id: 1},
-                  {league: "EPL", name: "Chelsea", id: 2},
-                  {league: "EPL", name: "QPR", id: 3},
-                  {league: "LFP", name: "Barcelona", id: 4},
-                  {league: "LFP", name: "Real Madrid", id: 5},
-                  {league: "LFP", name: "Atletico Madrid", id: 6},
-                  {league: "EreDivisie", name: "Ajax", id: 7},
-                  {league: "League I", name: "Marseille", id: 8},
-                  {league: "League I", name: "PSG", id: 9},
-                  {league: "Seria A", name: "Juventus", id: 10},
-                  {league: "Searie A", name: "AC Milan", id: 11}
-   ];
+  bsModalRef: BsModalRef;
+  constructor(private modalService: BsModalService) {}
+ 
+  openModalWithComponent() {
+    const initialState = {
+      list: [
+        'Open a modal with component',
+        'Pass your data',
+        'Do something else',
+        '...'
+      ],
+      title: 'Modal with component'
+    };
+    this.bsModalRef = this.modalService.show(ModalContentComponent, {initialState});
+    this.bsModalRef.content.closeBtnName = 'Close';
   }
-  
 }
+ 
+/*
+import { Component, TemplateRef } from '@angular/core';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+ 
+@Component({
+  selector: 'my-app',
+  templateUrl: './index.component.html'
+})
+export class IndexComponent {
+  modalRef: BsModalRef;
+  modalRef2: BsModalRef;
+  constructor(private modalService: BsModalService) {}
+ 
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
+  openModal2(template: TemplateRef<any>) {
+    this.modalRef2 = this.modalService.show(template, { class: 'second' });
+  }
+  closeFirstModal() {
+    this.modalRef.hide();
+    this.modalRef = null;
+  }
+}
+*/

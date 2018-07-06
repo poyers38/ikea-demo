@@ -12,39 +12,57 @@ import { ProductService } from '../product/product.service';
 
 export class SearchListComponent implements OnInit, OnDestroy {
 	@Input() products: Product[];
-	@Input() props: any[];
-	subRouterParams: Subscription;
+	@Input() parentUrl: string;
+	private subRouterParams: Subscription;
+	private subDeviceType: Subscription;
+	private subRouterQueryParams: Subscription;
+	deviceType: string;
+	query: string;
 	queryCategory: string;
 	querySubCategory: string;
 	queryColor: string; 
+	detailUrl: string; 
 	
 	constructor(
 		private router: Router,
 		private productService: ProductService,
 		private route: ActivatedRoute
 	) {
-		this.subRouterParams = this.route.queryParams.subscribe(
-			(params: string) => {
+		this.subDeviceType = this.productService.deviceType$.subscribe(
+			(data: string) => {
+				this.deviceType = data;
+			}
+		)
+		this.subRouterParams = this.route.params.subscribe(
+			(params) => {
+				this.query = params['query'];
+			}
+		);
+		this.subRouterQueryParams = this.route.queryParams.subscribe(
+			(params) => {
 				this.queryCategory = params['category'];
 				this.querySubCategory = params['subCategory'];
 				this.queryColor = params['color'];
 			}
 		);
-			if (this.queryCategory == undefined) 
-				this.queryCategory = '';
-			if (this.querySubCategory == undefined) 
-				this.querySubCategory = '';
-			if (this.queryColor == undefined) 
-				this.queryColor = '';
+		if (this.queryCategory == undefined) 
+			this.queryCategory = '';
+		if (this.querySubCategory == undefined) 
+			this.querySubCategory = '';
+		if (this.queryColor == undefined) 
+			this.queryColor = '';
 	}
 
 	ngOnInit() {
 		console.log('products');
 		console.log(this.products);
+		this.detailUrl = this.parentUrl + '/search/detail/';
 	}
 	
 	ngOnDestroy() {
 		this.subRouterParams.unsubscribe();
+		this.subDeviceType.unsubscribe();
+		this.subRouterQueryParams.unsubscribe();
 	}
 	
 }

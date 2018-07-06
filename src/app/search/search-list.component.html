@@ -1,8 +1,19 @@
-
-<h3>Result</h3> 
-<!--<a [routerLink]="['/ikea/search/chair']" [queryParams]="{ category: null }" queryParamsHandling="merge">All</a>-->
+<!--<h3>Result</h3> 
 <div class="card-group" >
 	<div class="col-4" *ngFor="let product of products | productFilterByColorPipe:queryColor | productFilterByCategoryPipe:queryCategory | productFilterBySubCategoryPipe:querySubCategory">
 		<app-search-list-item [product]="product"></app-search-list-item>
 	</div>
-</div>
+</div>-->
+
+<div *ngIf="deviceType == 'pc'; then thenBlock; else elseBlock">this is ignored</div>
+<ng-template #thenBlock>
+	<p *ngIf="query" class="font-weight-bold">Search results for "{{query}}", {{(products | productFilterByColorPipe:queryColor | productFilterByCategoryPipe:queryCategory | productFilterBySubCategoryPipe:querySubCategory).length}} {{products.length > 1 ? 'matches' : 'match'}}</p>
+	<div class="card-group">
+		<div class="col-4" *ngFor="let product of products | productFilterByColorPipe:queryColor | productFilterByCategoryPipe:queryCategory | productFilterBySubCategoryPipe:querySubCategory">
+			<app-search-list-item [parentUrl]="parentUrl" [product]="product"></app-search-list-item>
+		</div>
+	</div>
+</ng-template>
+<ng-template #elseBlock>
+	<app-product-list-item *ngFor="let product of products | productFilterByColorPipe:queryColor | productFilterByCategoryPipe:queryCategory | productFilterBySubCategoryPipe:querySubCategory" [props]="{product:product, detailUrl: detailUrl}"></app-product-list-item>
+</ng-template>

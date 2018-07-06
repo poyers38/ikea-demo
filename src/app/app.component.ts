@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy} from '@angular/core';
-import { Router, ActivatedRoute, NavigationStart, NavigationEnd, NavigationError, Event } from '@angular/router';
+import { Router, ActivatedRoute, NavigationStart, NavigationEnd, NavigationError, Event, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -25,6 +25,7 @@ export class AppComponent implements
   newUrl: string;
   screenWidth: number;
   screenHeight: number;
+	screenMinHeight: number;
   private sub: any;
   private currentParentUrl: string;
   private currentUrl: string;
@@ -34,11 +35,13 @@ export class AppComponent implements
   private subRouterParams: Subscription;
   private subProductParentUrl: Subscription;
   private subSearchBar: Subscription;
-  
+  private subRouterQueryParams: Subscription;
+	private queryParams: Params;
+	
   constructor(
-	private productService: ProductService,
-	private router: Router,
-	private route: ActivatedRoute
+		private productService: ProductService,
+		public router: Router,
+		private route: ActivatedRoute
   ) {
 		this.subRouterEvents = this.router.events.pipe(
             filter(event => event instanceof NavigationEnd)
@@ -46,8 +49,8 @@ export class AppComponent implements
 			console.log('sub');
 			this.currentParentUrl = this.router.url.split('/')[1];
 			this.productService.changeWindowSize(window.innerWidth);
-			this.openSearchBar();
-        });
+			//this.openSearchBar();
+		});
 		this.subDeviceType = this.productService.deviceType$.subscribe(
 			(data: string) => {
 				this.deviceType = data;
@@ -59,78 +62,80 @@ export class AppComponent implements
 					this.showMobile = false;
 				}
 			}
-		)
+		);
+		this.subRouterQueryParams = this.route.queryParams.subscribe(
+			(params) => {
+				this.queryParams = params;
+				console.log(this.queryParams);
+			}
+		);
 		this.subProductParentUrl = this.productService.productParentUrl$.subscribe(
 			(data: string) => {
 				this.productParentUrl = data;
-				
-				console.log('router.url.: ' + this.router.url);
-				//console.log('currentParentUrl: ' + this.currentParentUrl);
 				if (this.productParentUrl != this.currentParentUrl && this.currentParentUrl != undefined) {
-					this.urlParts = this.router.url.split('/');
 					this.urlParts = this.router.url.split('/');
 					this.newUrl = '';
 					let i = 1;
-					//console.log(urlParts);
 					for (let item of this.urlParts) {
 						if (i === 2)
 							this.newUrl = '/' + this.productParentUrl;
 						else 
 							this.newUrl = this.newUrl + '/' + decodeURIComponent(item);
-							//console.log(encodeURI(item));
+							console.log(decodeURIComponent(item));
 						i = i + 1;
-						
 					}
-					console.log('CHANGED URL'	);
-					this.router.navigate([this.newUrl]);
+					this.newUrl = this.newUrl.split('?')[0];
+					this.router.navigate([this.newUrl], { queryParams: this.queryParams});
 				}
 			}
-		)
+		);
 		this.subSearchBar = this.productService.isSearchBarMobileOpen$.subscribe(
 			(data: boolean) => {
 				this.isSearchBarMobileOpen = data;
 			}
-		)		
+		);		
   }
-  
+  /*
   openSearchBar() {
-	if (this.router.url == '/m.shop/search') 
-		this.isSearchBarMobileOpen2 = true;
-	else
-		this.isSearchBarMobileOpen2 = false;
+		if (this.router.url == '/m.shop/search') 
+			this.isSearchBarMobileOpen2 = true;
+		else
+			this.isSearchBarMobileOpen2 = false;
 	}
-
-	click() {
-		console.log("axxxxxaaa");
-	}
-
-	
+	*/
   ngOnInit() {
-	this.show = true;
-	this.showMobile = false;
-	this.productService.changeWindowSize(window.innerWidth);
+		this.show = true;
+		this.showMobile = false;
+		this.productService.changeWindowSize(window.innerWidth);
+		this.screenHeight = window.innerHeight;
+		if (this.showMobile)
+			this.screenMinHeight = 400;
+		else	
+			this.screenMinHeight = this.screenHeight - 350;
   }
   
   renderDisplay(size) {
-	if (size < 991) {
-		this.show = false;
-		this.showMobile = true;
-	}
-	else {
-		this.show = true;
-		this.showMobile = false;
-	}
+		if (size < 991) {
+			this.show = false;
+			this.showMobile = true;
+		}
+		else {
+			this.show = true;
+			this.showMobile = false;
+		}
   }
   
   onResize(event) {
-	this.renderDisplay(event.target.innerWidth);
-	this.productService.changeWindowSize(event.target.innerWidth);
+		this.renderDisplay(event.target.innerWidth);
+		this.productService.changeWindowSize(event.target.innerWidth);
+		this.screenHeight = event.target.innerHeight;
   }
   
   ngOnDestroy() {
-	this.subDeviceType.unsubscribe();
-	this.subRouterEvents.unsubscribe();
-	this.subProductParentUrl.unsubscribe();
-	this.subSearchBar.unsubscribe();
+		this.subDeviceType.unsubscribe();
+		this.subRouterEvents.unsubscribe();
+		this.subProductParentUrl.unsubscribe();
+		this.subSearchBar.unsubscribe();
+		this.subRouterQueryParams.unsubscribe();
   }
 }

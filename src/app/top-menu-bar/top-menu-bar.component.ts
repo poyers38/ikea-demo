@@ -2,6 +2,7 @@ import { Component, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
+import { SearchBarComponent } from '../search/search-bar.component';
 import { ProductService } from '../product/product.service';
 
 @Component({
@@ -50,7 +51,7 @@ export class TopMenuBarComponent implements  OnDestroy
 			}
 		)
 		this.subParentUrl = this.productService.productParentUrl$.subscribe(
-			(data: boolean) => {
+			(data: string) => {
 				this.parentUrl = data;
 			}
 		)
@@ -67,16 +68,18 @@ export class TopMenuBarComponent implements  OnDestroy
 	
   toggleSearchBar(): void {
     if (this.deviceType != 'mobile') {
-		this.isSearchBarOpen = !this.isSearchBarOpen;
-		this.productService.changeSearchBar(this.isSearchBarOpen);
-	}
-	else {
-		console.log('this.currentUrl ' + this.router.url);
-		this.productService.changePrevUrl(decodeURIComponent(this.router.url));
-		this.productService.changeSearchBarMobile(true);
-		
-		//this.router.navigate(['m.shop/search']);
-	}
+			this.isSearchBarOpen = !this.isSearchBarOpen;
+			this.productService.changeSearchBar(this.isSearchBarOpen);
+			this.productService.changeSearchBarMobile(false);
+		}
+		else {
+			console.log('this.currentUrl ' + this.router.url);
+			this.productService.changePrevUrl(decodeURIComponent(this.router.url));
+			this.productService.changeSearchBar(false);
+			this.productService.changeSearchBarMobile(!this.isSearchBarMobileOpen);
+			
+			//this.router.navigate(['m.shop/search']);
+		}
   }
   
   onSearch() {
@@ -85,9 +88,9 @@ export class TopMenuBarComponent implements  OnDestroy
   }
   
   ngOnDestroy() {
-	this.subDeviceType.unsubscribe();
-	this.subSearchBarMobileOpen.unsubscribe();
-	this.subSearchBarOpen.unsubscribe();
-	this.subParentUrl.unsubscribe();
+		this.subDeviceType.unsubscribe();
+		this.subSearchBarMobileOpen.unsubscribe();
+		this.subSearchBarOpen.unsubscribe();
+		this.subParentUrl.unsubscribe();
   }
 }

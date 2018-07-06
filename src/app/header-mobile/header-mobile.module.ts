@@ -13,14 +13,14 @@ import { TopMenuBarModule } from '../top-menu-bar/top-menu-bar.module';
 @NgModule({
   imports: [
     CommonModule,
-	MenubarMobileModule,
-	TopMenuBarModule,
-	SearchModule,
-	RouterModule
+		MenubarMobileModule,
+		TopMenuBarModule,
+		SearchModule,
+		RouterModule
   ],
   declarations: [HeaderMobileComponent],
   exports: [
-	HeaderMobileComponent
+		HeaderMobileComponent
   ]
 })
 export class HeaderMobileModule { }

@@ -10,9 +10,10 @@ import { ProductService } from '../product/product.service';
 })
 export class HeaderComponent implements OnInit {
   isSearchBarOpen: boolean;
-  
+  subSearchBarOpen: Subscription;
+	
   constructor(
-	private productService: ProductService
+		private productService: ProductService
   ) { }
 
   ngOnInit() {
@@ -24,10 +25,10 @@ export class HeaderComponent implements OnInit {
   }
 	
   clicked() : string {
-	return 'show';
+		return 'show';
   }
   
   ngOnDestroy() {
-	this.subSearchBarOpen.unsubscribe();
+		this.subSearchBarOpen.unsubscribe();
   }
 }

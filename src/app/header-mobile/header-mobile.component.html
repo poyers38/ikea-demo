@@ -1,5 +1,5 @@
 <div class="header-mobile-holder">
-	<div *ngIf="!isSearchBarMobileOpen" class="header-mobile">
+	<div class="header-mobile">
 		<div class="row">
 			<div class="col col-lg-6">	
 				<a [routerLink]="['home']"><img class="mobile-logo" src="./assets/images/logo.svg" alt="Card image cap"></a>
@@ -8,22 +8,17 @@
 				<app-top-menu-bar></app-top-menu-bar>
 			</div>
 		</div>
-	</div>
-
-	<div *ngIf="isSearchBarMobileOpen" class="search-mobile">
-		<div class="row">
-			<div class="col col-lg-12">
-				<!--<app-search></app-search>-->
+		<div *ngIf="isSearchBarMobileOpen" class="row">
+			<div class="col col-lg-12" >
+				<app-search-bar></app-search-bar>
 			</div>
 		</div>
 	</div>
 </div>
-
-<div [ngClass]="{'inactive': isSearchBarMobileOpen}" class="header-mobile">
+<div class="header-mobile">
 	<div class="row">
 		<div class="col col-lg-12">
 			<app-menubar-mobile></app-menubar-mobile>
 		</div>
 	</div>
 </div>
-

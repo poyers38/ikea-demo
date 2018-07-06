@@ -32,20 +32,6 @@ export class SearchPopComponent implements OnInit {
   clickFromInside: boolean;
   clickFromInsideCounter: number;
   isSearchBarMobileOpen: boolean;
-  const searchTemp: [] = [
-  {
-	name: 'blames',
-		searchType: 'product'
-  },
-   {
-	name: 'blames2',
-		searchType: 'product'
-  },
-   {
-	name: 'blames3',
-		searchType: 'product'
-  }
-  ];
   
   constructor(
 		private productService: ProductService,
@@ -57,40 +43,26 @@ export class SearchPopComponent implements OnInit {
   }
   
   ngOnInit() {
-		/*
-		this.searches = this.searchService.getSearches();
-		this.searches = this.searchTemp;	
-		this.clickFromInside = false;
-		this.clickFromInsideCounter = 0;
-		this.products = this.productService.getProducts();
-		console.log('this.products');
-		console.log(this.products);
-		this.subPrevUrl = this.productService.prevUrl$.subscribe(
-			(data: string) => {
-				this.prevUrl = data;
-			}
-		*/
 		this.subProductParentUrl = this.productService.productParentUrl$.subscribe(
 				(data: string) => {
 					this.productParentUrl = data;
 				}
-			)
-			
+		);
 		this.subPrevProductSearch = this.productService.prevProdSearch$.subscribe(
 			(data: string) => {
 				this.prevSearch = data;
 			}
-		)
+		);
 		this.subSearchBarMobileStatus = this.productService.isSearchBarMobileOpen$.subscribe(
 			(data: boolean) => {
 				this.isSearchBarMobileOpen = data;
 			}
-		)
+		);
 		this.subSearchKeyword = this.productService.searchKeyword$.subscribe(
-				(data: boolean) => {
+				(data: string) => {
 					this.searchKeyword = data;
 				}
-			)
+		);
   }
 	
   goToSearch() {

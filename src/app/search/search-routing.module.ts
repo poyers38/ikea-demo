@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SearchIndexComponent } from './search-index.component';
-import { SearchMobileIndexComponent } from './search-mobile-index.component';
+import { DetailComponent } from '../product/product-detail/detail.component';
 
 @NgModule({
 	imports: [RouterModule.forChild([
@@ -11,8 +11,16 @@ import { SearchMobileIndexComponent } from './search-mobile-index.component';
 		},
 		{ 
 			path: 'm.ikea/search/:query', 
-			component: SearchMobileIndexComponent
-		}		
+			component: SearchIndexComponent
+		},
+		{ 
+			path: 'ikea/search/detail/:productCode', 
+			component: DetailComponent
+		},	
+		{ 
+			path: 'm.ikea/search/detail/:productCode', 
+			component: DetailComponent
+		}			
 	])],
 	exports: [RouterModule]
 })
