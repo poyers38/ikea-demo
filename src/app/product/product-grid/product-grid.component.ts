@@ -23,18 +23,20 @@ export class ProductGridComponent implements OnDestroy {
 	products: Product[];
 	productCategories: ProductCategory[];
 	category: string;
-	subCategory: string;
+	querySubCategory: string;
 	private subDeviceType: Subscription;
 	private subProductParentUrl: Subscription;
 	private subProductViewType: Subscription;
 	private subRouterEvents: Subscription;
 	private subRouterParams: Subscription;
+	private subRouterQueryParams: Subscription;
+	private subparentUrl: Subscription;
 	private breadcrumb: any[];
 	private detailUrl: string;
 	productViewType: string;
 	productViewType2: string;
 	myProps: Props[];
-	productParentUrl: string;
+	parentUrl: string;
 	deviceType: string;
 	
 	constructor(
@@ -44,14 +46,22 @@ export class ProductGridComponent implements OnDestroy {
 		private breadcrumbsService: BreadcrumbsService
 	)
 	{ 
+		this.subRouterParams = this.route.params.subscribe(params => {
+			this.category = params['productCategory']; 
+		});
+		this.subRouterQueryParams = this.route.queryParams.subscribe(
+			(params) => {
+				this.querySubCategory = params['category'];
+			}
+		);
 		this.subDeviceType = this.productService.deviceType$.subscribe(
 			(data: string) => {
 				this.deviceType = data;
 			}
 		)
-		this.subProductParentUrl = this.productService.productParentUrl$.subscribe(
+		this.subparentUrl = this.productService.productParentUrl$.subscribe(
 			(data: string) => {
-				this.productParentUrl = data;
+				this.parentUrl = data;
 			}
 		)
 		this.subProductViewType = this.productService.productViewType$.subscribe(
@@ -62,9 +72,14 @@ export class ProductGridComponent implements OnDestroy {
 		this.subRouterEvents = this.router.events.pipe(
 				filter(event => event instanceof NavigationEnd)
 		).subscribe((route: ActivatedRoute) => {
+			if (this.querySubCategory == undefined)
+				this.querySubCategory = '';
+			else
+				this.querySubCategory = this.querySubCategory.toLowerCase();
 			this.addBreadcrumb();
 			window.scrollTo(0, 0)
 		});
+		
 	}
 	
 	ngOnInit() {
@@ -72,20 +87,21 @@ export class ProductGridComponent implements OnDestroy {
 	}
 	
 	addBreadcrumb() {
-		this.subRouterParams = this.route.params.subscribe(params => {
-			this.category = params['productCategory']; 
-			this.subCategory = params['productSubCategory']; 
-		});
-		this.detailUrl = this.productParentUrl + '/products/' + this.category + '/' + this.subCategory + '/detail';
+		//this.detailUrl = this.parentUrl + '/products/' + this.category + '/' + this.querySubCategory + '/detail';
+		this.detailUrl = this.parentUrl + '/products/detail';
 		this.productCategories = this.productService.getProductCategories();
 		this.products = this.productService.getProducts();
-		this.breadcrumb = [
-		{label: 'products' , url: '/' + this.productParentUrl + '/products/', params: []},
-		{label: this.category.toLowerCase() , url: '/' + this.productParentUrl + '/products/' + this.category, params: []},
-		{label: this.subCategory.toLowerCase() , url: '', params: []},
+		/*this.breadcrumb = [
+		{label: 'products' , url: '/' + this.parentUrl + '/products/', params: []},
+		{label: this.category.toLowerCase() , url: '/' + this.parentUrl + '/products/' + this.category, params: []},
+		{label: this.querySubCategory.toLowerCase() , url: '', params: []},
 		];
 		console.log('grid breadcrumbs: ' + this.breadcrumb);
-		this.breadcrumbsService.store(this.breadcrumb);
+		this.breadcrumbsService.store(this.breadcrumb);*/
+	}
+	
+	handleSubCategoryFilter(subCategory: string) {
+		this.router.navigate([this.parentUrl + '/products/' + this.category + '/' + this.productViewType],  { queryParams: { category: subCategory }, queryParamsHandling: 'merge'});
 	}
 	
 	onClicked() {	
@@ -96,7 +112,7 @@ export class ProductGridComponent implements OnDestroy {
 			newProductViewType = 'product-grid';
 			
 		this.productService.changeProductViewType(newProductViewType);	
-		this.router.navigate(['./' + this.productParentUrl + '/products/' + this.category + '/' + this.productViewType + '/' + this.subCategory]);
+		this.router.navigate(['./' + this.parentUrl + '/products/' + this.category + '/' + this.productViewType + '/' + this.subCategory]);
 	}
 	
 	removeBreadcrumb() {
@@ -108,10 +124,11 @@ export class ProductGridComponent implements OnDestroy {
 	   
 	ngOnDestroy() {
 		this.subDeviceType.unsubscribe();
-		this.subProductParentUrl.unsubscribe();
+		this.subparentUrl.unsubscribe();
 		this.subProductViewType.unsubscribe();
 		this.subRouterEvents.unsubscribe();
 		this.subRouterParams.unsubscribe();
+		this.subRouterQueryParams.unsubscribe();
 		this.removeBreadcrumb();
 	}
 }

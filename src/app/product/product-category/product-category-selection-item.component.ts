@@ -29,7 +29,7 @@ export class ProductCategorySelectionItemComponent implements OnInit {
   }
 
 	onClicked(prodCat: ProductCategory) {
-		this._router.navigate(['./' + this.prodCatProps['parentUrl'] + '/products/' + this.prodCatProps['productCategory'].category + '/' + this.prodCatProps['productViewType'] + '/' + this.prodCatProps['productCategory'].name]);
+		this._router.navigate(['./' + this.prodCatProps['parentUrl'] + '/products/' + this.prodCatProps['productCategory'].category + '/' + this.prodCatProps['productViewType']],  { queryParams: { category: this.prodCatProps['productCategory'].name }, queryParamsHandling: 'merge'});
 	}
 }
 

@@ -9,6 +9,7 @@ import { IndexComponent } from './index.component';
 import { DetailComponent } from './product-detail/detail.component';
 import { ProductHomeComponent } from './product-home.component';
 import { ProductMenuCategoryMobileComponent } from './product-menu-category-mobile/product-menu-category-mobile.component';
+import { ProductMenuSubCategoryMobileComponent } from './product-menu-category-mobile/product-menu-sub-category-mobile.component';
 import { SearchMainComponent } from '../search/search-main.component';
 
 @NgModule({
@@ -19,7 +20,7 @@ import { SearchMainComponent } from '../search/search-main.component';
 			children: [
 				{ 
 					path: ':productCategory', 
-					component: ProductCategorySelectionComponent,
+					component: ProductGridComponent,
 					pathMatch: 'full'
 				},
 				{ 
@@ -33,31 +34,22 @@ import { SearchMainComponent } from '../search/search-main.component';
 				{ 
 					path: 'default', 
 					component: ProductHomeComponent,
-					pathMatch: 'full',
-					data: {
-						breadcrumb: 'ProductHomeComponent'
-					}
+					pathMatch: 'full'
 				},
 				{ 
-					path: ':productCategory/product-list/:productSubCategory', 
+					path: ':productCategory/product-list', 
 					component: ProductGridComponent,
-					pathMatch: 'full',
-					data: {
-						breadcrumb: 'ProductGridComponent'
-					}
+					pathMatch: 'full'
 				},
 				{ 
-					path: ':productCategory/product-grid/:productSubCategory', 
+					path: ':productCategory/product-grid', 
 					component: ProductGridComponent,
-					pathMatch: 'full',
-					data: {
-						breadcrumb: 'ProductGridComponent'
-					}
+					pathMatch: 'full'
 				}
 			]
 		},
 		{ 
-			path: 'ikea/products/:productCategory/:productSubCategory/detail/:productCode', 
+			path: 'ikea/products/detail/:productCode', 
 			component: DetailComponent
 		},
 		{ 
@@ -70,7 +62,7 @@ import { SearchMainComponent } from '../search/search-main.component';
 			children: [
 				{ 
 					path: ':productCategory', 
-					component: ProductCategorySelectionComponent,
+					component: ProductMenuSubCategoryMobileComponent,
 					pathMatch: 'full',
 					data: {
 						breadcrumb: ''
@@ -79,7 +71,10 @@ import { SearchMainComponent } from '../search/search-main.component';
 				{ 
 					path: '', 
 					component: ProductMenuCategoryMobileComponent,
-					pathMatch: 'full'
+					pathMatch: 'full',
+					data: {
+						breadcrumb: ''
+					}
 				},
 				{ 
 					path: 'default', 
@@ -87,11 +82,11 @@ import { SearchMainComponent } from '../search/search-main.component';
 					pathMatch: 'full'
 				},
 				{ 
-					path: ':productCategory/product-list/:productSubCategory', 
+					path: ':productCategory/product-list', 
 					component: ProductGridComponent
 				},
 				{ 
-					path: ':productCategory/product-grid/:productSubCategory', 
+					path: ':productCategory/product-grid', 
 					component: ProductGridComponent,
 					pathMatch: 'full'
 				},

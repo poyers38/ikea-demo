@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild, Renderer2 } from '@angular/core';
-import { Router, ActivatedRoute, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
+import { Router, ActivatedRoute, NavigationStart, NavigationEnd, NavigationError, Params, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { BreadcrumbsService } from 'ng6-breadcrumbs';
@@ -13,7 +13,7 @@ import { ProductService } from '../product.service';
   templateUrl: './detail.component.html'
 })
 export class DetailComponent implements OnInit {
-	products: Product[];
+	products: Product;
 	product: any[];
 	productImages: ProductImage[];
 	private breadcrumb: any[];
@@ -23,7 +23,8 @@ export class DetailComponent implements OnInit {
 	productViewType: string;
 	deviceType: string;
 	private productParentUrl: string;
-	
+	params: Params;
+	params2: RouterLink;
 	@ViewChild('img1') img;
 	@ViewChild('imageCarousel') imageCarousel;
 	private subRouterEvents: Subscription;
@@ -70,8 +71,11 @@ export class DetailComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.product = this.productService.getProduct(this.productCode);
+		
 		this.productImages = this.productService.getProductImage(this.productCode);
+		console.log('menuSubCategory');
+		console.log(this.product);
+		console.log(this.product[0]['menuSubCategory']);
 		this.addBreadcrumb();
 	}
 	
@@ -80,10 +84,18 @@ export class DetailComponent implements OnInit {
 	}
 	
 	addBreadcrumb() {
+		this.product = this.productService.getProduct(this.productCode);
+		this.params = {
+			category: this.product[0]['menuSubCategory'];
+		}
+		console.log('this.params');
+		console.log(this.params);
+		//this.params2 = ([this.parentUrl + '/products/' + this.category + '/' + this.productViewType],  { queryParams: { category: subCategory }, queryParamsHandling: 'merge'});
+		//console.log(this.params2);
 		this.breadcrumb = [
 			{label: 'products' , url: '/' + this.productParentUrl + '/products/', params: []},
-			{label: this.category.toLowerCase() , url: '/' + this.productParentUrl + '/products/' + this.category, params: []},
-			{label: this.subCategory.toLowerCase(), url: '/' + this.productParentUrl + '/products/' + this.category + '/' + this.productViewType + '/' + this.subCategory, params: []},
+			{label: this.product[0]['menuCategory'].toLowerCase() , url: '/' + this.productParentUrl + '/products/' + this.product[0]['menuCategory'], params: []},
+			{label: this.product[0]['menuSubCategory'].toLowerCase(), url: '/' + this.productParentUrl + '/products/' + this.product[0]['menuCategory'] + '/' + this.productViewType, params: this.params},
 			{label: this.productCode , url: '', params: []},
 		];
 		this.breadcrumbsService.store(this.breadcrumb);

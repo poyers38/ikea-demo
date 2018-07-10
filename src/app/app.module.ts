@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Directive } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+
 import { ReactiveFormsModule} from "@angular/forms";
 import { RouterModule } from '@angular/router';
 
@@ -38,6 +40,7 @@ import { SearchFilterSubCategoryModalComponent } from './search/search.modals/se
   ],
   imports: [
     BrowserModule,
+		HttpClientModule,
 		HttpModule,
 		ReactiveFormsModule,
 		RouterModule,

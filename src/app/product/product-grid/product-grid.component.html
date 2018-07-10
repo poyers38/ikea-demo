@@ -1,4 +1,4 @@
-<div *ngIf="deviceType == 'pc'" class='mb-3 viewoption'>
+<!--<div *ngIf="deviceType == 'pc'" class='mb-3 viewoption'>
 	<div *ngIf="productViewType == 'product-grid'; then thenBlock1; else elseBlock1">this is ignored</div>
 	<ng-template #thenBlock1>
 		<button class="btn btn-outline-primary" (click)="onClicked()"><i class='fa fa-th'></i></button>  
@@ -6,13 +6,51 @@
 	<ng-template #elseBlock1>
 		<button class="btn btn-outline-primary" (click)="onClicked()"><i class='fa fa-list'></i></button>
 	</ng-template>
-</div>
-<div *ngIf="productViewType == 'product-grid'; then thenBlock; else elseBlock">this is ignored</div>
+	
+	
+	{{deviceType}}
+<div *ngIf="deviceType == 'pc'; then thenBlock; else elseBlock">this is ignored</div>
 <ng-template #thenBlock>
-	<div class="card-columns" >
-		<app-product-grid-item *ngFor="let product of products | productBySubCategoryFilterPipe:subCategory" [props]="{product:product, detailUrl: detailUrl, productViewType: 'product-grid'}"></app-product-grid-item>
+	<div class="card-group">
+		<div class="col-4" *ngFor="let productCategory of productCategories | productCategoryFilterPipe:category" >
+			<app-product-category-selection-item [prodCatProps]="{productCategory: productCategory, parentUrl: parentUrl, productViewType: productViewType}"></app-product-category-selection-item>
+		</div>
 	</div>
 </ng-template>
 <ng-template #elseBlock>
-	<app-product-list-item *ngFor="let product of products | productBySubCategoryFilterPipe:subCategory" [props]="{product:product, detailUrl: detailUrl, productViewType: 'product-list'}"></app-product-list-item>
+	<app-product-category-selection-item-mobile [productCategories]="productCategories | productCategoryFilterPipe:category" [productCategory]="category" [productViewType]="productViewType"></app-product-category-selection-item-mobile>
 </ng-template>
+
+
+
+
+	
+
+	
+</div>-->
+<div class="container">
+	<div *ngIf="deviceType == 'pc'" class="row">
+		<ul class="sub-category-nav">
+				<a *ngIf="querySubCategory!='' && querySubCategory!=undefined" (click)="handleSubCategoryFilter(undefined)">View all</a>
+				<a *ngFor="let subCategory of products | productFilterByCategoryPipe:category | productSubCategoryGroup"
+					(click)="handleSubCategoryFilter(subCategory.name)"
+					[ngClass]="{'active': subCategory.name.toLowerCase() == querySubCategory && querySubCategory != ''}">
+						{{subCategory.name}}
+				</a>
+		</ul>
+	</div>
+	<div class="row">
+		<div *ngIf="productViewType == 'product-grid'; then thenBlock; else elseBlock">this is ignored</div>
+		<ng-template #thenBlock>
+			<div class="card-group">
+				<div class="col-4" *ngFor="let product of products | productFilterByCategoryPipe:category | productFilterBySubCategoryPipe:querySubCategory">
+					<app-product-grid-item [props]="{product:product, detailUrl: detailUrl, productViewType: 'product-grid'}"></app-product-grid-item>
+				</div>
+			</div>
+		</ng-template>
+		<ng-template #elseBlock>
+			<app-product-list-item *ngFor="let product of products | productFilterByCategoryPipe:category | productFilterBySubCategoryPipe:querySubCategory" [props]="{product:product, detailUrl: detailUrl, productViewType: 'product-list'}"></app-product-list-item>
+		</ng-template>
+	</div>
+</div>
+

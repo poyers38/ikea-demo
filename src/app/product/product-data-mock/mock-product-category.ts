@@ -8,6 +8,12 @@ export const PRODUCTCATEGORY: ProductCategory[] = [
    "imgFilename": "70462_PE185759_S3.JPG"
  },
  {
+   "id": 2,
+   "category": "Baby",
+   "name": "Mattresses",
+   "imgFilename": "matresses.JPG"
+ },
+ {
    "id": 3,
    "category": "Baby",
    "name": "Changing tables & nursing",
@@ -194,39 +200,184 @@ export const PRODUCTCATEGORY: ProductCategory[] = [
    "imgFilename": "0351322_PE540627_S3.JPG"
  },
  {
-   "id": 333,
-   "category": "Beds",
-   "name": "Sofa-beds",
-   "imgFilename": "0519027_PE641353_S3.JPG"
- },
- {
    "id": 34,
    "category": "Beds",
    "name": "Loft and bunk beds",
    "imgFilename": "63504_PE171155_S3.JPG"
  },
  {
+   "id": 35,
+   "category": "Beds",
+   "name": "Sofa-beds",
+   "imgFilename": "0519027_PE641353_S3.JPG"
+ },
+ {
    "id": 36,
    "category": "Kitchen Furniture",
-   "name": "Modular kitchens",
-   "imgFilename": "0477904_PE617151_S3.JPG"
+   "name": "Cabinets & fronts",
+   "imgFilename": "knoxhult-base-cabinet-with-doors-grey__0477904_PE617151_S4.JPG"
  },
  {
    "id": 37,
    "category": "Kitchen Furniture",
-   "name": "Pantry",
-   "imgFilename": "0217710_PE374967_S3.JPG"
- },
- {
-   "id": 38,
-   "category": "Kitchen Furniture",
-   "name": "Kitchen islands & trolleys",
-   "imgFilename": "0251742_PE390385_S3.JPG"
+   "name": "Modular kitchens",
+   "imgFilename": "knoxhult-base-cabinet-with-doors-grey__0477904_PE617151_S4.JPG"
  },
  {
    "id": 39,
    "category": "Kitchen Furniture",
+   "name": "Pantry",
+   "imgFilename": "omar-bottle-shelf__30463_PE118907_S4.JPG"
+ },
+ {
+   "id": 40,
+   "category": "Kitchen Furniture",
+   "name": "Kitchen islands & trolleys",
+   "imgFilename": "raskog-trolley-beige__0251742_PE390385_S4.JPG"
+ },
+ {
+   "id": 41,
+   "category": "Kitchen Furniture",
    "name": "Step stools & ladders",
-   "imgFilename": "0122139_PE278504_S3.JPG"
+   "imgFilename": "bekvam-step-stool__0485378_PE621506_S4.JPG"
+ },
+ {
+   "id": 42,
+   "category": "Laundry & cleaning",
+   "name": "Laundry baskets",
+   "imgFilename": "plumsa-storage-basket-white__0504994_PE633637_S4.JPG"
+ },
+ {
+   "id": 43,
+   "category": "Laundry & cleaning",
+   "name": "Drying racks",
+   "imgFilename": "jall-drying-rack-in-outdoor-white__0185548_PE337555_S4.JPG"
+ },
+ {
+   "id": 44,
+   "category": "Laundry & cleaning",
+   "name": "Ironing boards",
+   "imgFilename": "jall-ironingboard-table__0175751_PE329160_S4.JPG"
+ },
+ {
+   "id": 45,
+   "category": "Laundry & cleaning",
+   "name": "Hooks &amp; hangers",
+   "imgFilename": "tjusig-hanger-white__0313204_PE516756_S4.JPG"
+ },
+ {
+   "id": 46,
+   "category": "Laundry & cleaning",
+   "name": "Clothes organisers",
+   "imgFilename": "pluring-hanging-storage-with-compartments-white__0276493_PE415070_S4.JPG"
+ },
+ {
+   "id": 47,
+   "category": "Laundry & cleaning",
+   "name": "Cleaning accessories",
+   "imgFilename": "bastis-lint-roller-refill__0084876_PE211965_S4.JPG"
+ },
+ {
+   "id": 48,
+   "category": "Tableware",
+   "name": "Dinnerware",
+   "imgFilename": "dinera-piece-service-pink__0430307_PE584564_S4.JPG"
+ },
+ {
+   "id": 49,
+   "category": "Tableware",
+   "name": "Cutlery",
+   "imgFilename": "mopsig-piece-cutlery-set__0578528_PE669390_S4.JPG"
+ },
+ {
+   "id": 50,
+   "category": "Tableware",
+   "name": "Glassware & jugs",
+   "imgFilename": "hederlig-red-wine-glass__0110579_PE260932_S4.JPG"
+ },
+ {
+   "id": 51,
+   "category": "Tableware",
+   "name": "Serve ware",
+   "imgFilename": "garnera-serving-stand-two-tiers-white__0278106_PE417587_S4.JPG"
+ },
+ {
+   "id": 52,
+   "category": "Tableware",
+   "name": "Coffee & tea",
+   "imgFilename": "fargrik-mug-white__15987_PE100241_S4.JPG"
+ },
+ {
+   "id": 53,
+   "category": "Tableware",
+   "name": "Napkins & napkin holders",
+   "imgFilename": "liksidig-napkin-holder-white__0138263_PE297418_S4.JPG"
+ },
+ {
+   "id": 54,
+   "category": "Ligthning",
+   "name": "Floor lamps",
+   "imgFilename": "klabb-floor-lamp-white__0281602_PE419952_S4.JPG"
+ },
+ {
+   "id": 55,
+   "category": "Ligthning",
+   "name": "Table lamps",
+   "imgFilename": "klabb-table-lamp-white__0429069_PE583835_S4.JPG"
+ },
+ {
+   "id": 56,
+   "category": "Ligthning",
+   "name": "Ceiling lamps",
+   "imgFilename": "foto-pendant-lamp-green__0545760_PE666415_S4.JPG"
+ },
+ {
+   "id": 57,
+   "category": "Ligthning",
+   "name": "Wall lamps",
+   "imgFilename": "hektar-wall-clamp-spotlight-white__0455653_PE603636_S4.JPG"
+ },
+ {
+   "id": 58,
+   "category": "Ligthning",
+   "name": "Work lamps",
+   "imgFilename": "forsa-work-lamp-green__0609295_PE684434_S4.JPG"
+ },
+ {
+   "id": 59,
+   "category": "Outdoor furniture",
+   "name": "Dining sets",
+   "imgFilename": "sjalland-table-chairs-w-armrests-outdoor-grey__0588222_PE672987_S4.JPG"
+ },
+ {
+   "id": 60,
+   "category": "Outdoor furniture",
+   "name": "Lounging & relaxing",
+   "imgFilename": "applaro-seat-sofa-outdoor-brown__0187801_PE340761_S4.JPG"
+ },
+ {
+   "id": 61,
+   "category": "Outdoor furniture",
+   "name": "Storage and shelving",
+   "imgFilename": "hindo-cabinet-in-outdoor-grey__0324542_PE517382_S4.JPG"
+ },
+ {
+   "id": 62,
+   "category": "Outdoor furniture",
+   "name": "Parasols & gazebos",
+   "imgFilename": "samso-parasol-with-base-beige__0512487_PE638585_S4.JPG"
+ },
+ {
+   "id": 63,
+   "category": "Outdoor furniture",
+   "name": "Barbeques",
+   "imgFilename": "klasen-charcoal-barbecue-with-trolley__0212988_PE367120_S4.JPG"
+ },
+ {
+   "id": 64,
+   "category": "Tables and desks",
+   "name": "Dining tables",
+   "imgFilename": "ingatorp-extendable-table-white__0146740_PE305745_S4.JPG"
  }
 ];
+

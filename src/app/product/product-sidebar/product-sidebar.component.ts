@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 
 import { ProductService } from '../product.service';
+import { Product } from '../product/product';
 
 @Component({
   selector: 'app-product-sidebar',
@@ -9,7 +10,7 @@ import { ProductService } from '../product.service';
 
 export class ProductSidebarComponent implements OnInit {
 	@Input() categoryRouteParam: string;
-
+	products: Product[];
 	productViewType: string;
 	
   constructor(
@@ -19,7 +20,8 @@ export class ProductSidebarComponent implements OnInit {
 
   ngOnInit(
   ) {
-	this.productService.productViewType$.subscribe(data => { this.productViewType = data; });
+		this.productService.productViewType$.subscribe(data => { this.productViewType = data; });
+		this.products = this.productService.getProducts();
   }
 	
 }

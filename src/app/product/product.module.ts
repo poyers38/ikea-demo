@@ -4,8 +4,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { BreadcrumbsModule } from "ng6-breadcrumbs";
 
+
 import { ProductRoutingModule } from './product-routing.module';
-import { ProductMenuCategoryMobileModule } from './product-menu-category-mobile/product-menu-category-mobile.module';
+import { SharedModule } from '../shared/shared.module';
+import { ProductMenuCategoryMobileComponent } from './product-menu-category-mobile/product-menu-category-mobile.component';
+import { ProductMenuSubCategoryMobileComponent } from './product-menu-category-mobile/product-menu-sub-category-mobile.component';
 import { ShopComponent } from './shop.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductListItemComponent } from './product-list/product-list-item.component';
@@ -17,14 +20,11 @@ import { ProductSidebarComponent } from './product-sidebar/product-sidebar.compo
 import { ProductCategorySelectionComponent } from './product-category/product-category-selection.component';
 import { ProductCategorySelectionItemComponent } from './product-category/product-category-selection-item.component';
 import { ProductHomeComponent } from './product-home.component';
-import { ProductCategoryFilterPipe } from './product-category/product-category-filter.pipe';
-//import { ProductSearchFilterPipe } from './product-search-filter.pipe';
-import { ProductBySubCategoryFilterPipe } from './product-sub-category-filter.pipe';
 import { ProductImageFilterPipe } from './product-image-filter.pipe';
 import { ProductFilterPipe } from './product-filter.pipe';
 import { ProductSidebarMobileComponent } from './product-sidebar-mobile/product-sidebar-mobile.component';
 import { ShopMobileComponent } from './shop-mobile.component';
-import { ProductCategorySelectionItemMobileComponent } from './product-category/product-category-selection-item-mobile.component';
+
 import { SearchListComponent } from './product-search/search-list.component';
 import { SearchBarComponent } from './product-search/search-bar.component';
 import { SearchIndexComponent } from './product-search/search-index.component';
@@ -35,9 +35,9 @@ import { ProductService } from './product.service';
   imports: [
     CommonModule,
     ProductRoutingModule,
-		ProductMenuCategoryMobileModule,
 		BreadcrumbsModule,
-		NgbModule
+		NgbModule,
+		SharedModule
   ],
   declarations: [
 		ShopComponent, 
@@ -51,13 +51,12 @@ import { ProductService } from './product.service';
 		ProductCategorySelectionComponent, 
 		ProductCategorySelectionItemComponent,
 		ProductHomeComponent,
-		ProductCategoryFilterPipe,
-		ProductBySubCategoryFilterPipe,
 		ProductImageFilterPipe,
 		ProductFilterPipe,
 		ProductSidebarMobileComponent,
 		ShopMobileComponent,
-		ProductCategorySelectionItemMobileComponent,
+		ProductMenuCategoryMobileComponent,
+		ProductMenuSubCategoryMobileComponent,
 		SearchListComponent,
 		SearchBarComponent,
 		SearchIndexComponent,
@@ -69,7 +68,6 @@ import { ProductService } from './product.service';
 		ProductListItemComponent, 
 		ProductGridComponent,
 		ProductCategorySelectionComponent,
-		ProductCategoryFilterPipe,
 		BreadcrumbsModule
   ], 
   providers: [

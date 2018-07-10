@@ -42,13 +42,18 @@ export class ProductCategorySelectionComponent implements OnInit, OnDestroy {
 		private productService: ProductService,
 		private breadcrumbsService: BreadcrumbsService
 	) {
-	
+		this.subRouterParams = this.route.params.subscribe(params => {
+			this.category = params['productCategory']; 
+		});
+		
 		this.subRouterEvents = this.router.events.pipe(
-            filter(event => event instanceof NavigationEnd)
-        ).subscribe((route: ActivatedRoute) => {
+				filter(event => event instanceof NavigationEnd)
+		).subscribe((route: ActivatedRoute) => {
+			if (this.category == undefined) 
+				this.category = '';
+				
 			this.addBreadcrumb();
-        });
-
+		});
 		this.subDeviceType = this.productService.deviceType$.subscribe(
 			(data: string) => {
 				this.deviceType = data;
@@ -71,16 +76,10 @@ export class ProductCategorySelectionComponent implements OnInit, OnDestroy {
   ngOnInit() : void {
 		this.productCategories = this.productService.getProductCategories();
 		this.addBreadcrumb();
-		console.log(this.productCategories);
   }
   
   addBreadcrumb() {
-		this.subRouterParams = this.route.params.subscribe(params => {
-			this.category = params['productCategory']; 
-		});
-		if (this.category == undefined) 
-			this.category = '';
-			
+		
 		this.products = this.productService.getProducts();
 		this.breadcrumb = [
 			{label: 'products' , url: '/' + this.parentUrl + '/products/', params: []},

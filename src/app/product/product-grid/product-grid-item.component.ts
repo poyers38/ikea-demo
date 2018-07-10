@@ -22,13 +22,12 @@ export class ProductGridItemComponent implements OnInit {
 
 	ngOnInit() {
 		this.product = this.props.product;
-		this.productDetailUrl = this.props.detailUrl;
+		this.productDetailUrl = this.props.detailUrl];
+		console.log(this.productDetailUrl);
 		
 	}
 
-	onClicked(prodDetailUrl: string) {
-		console.log('product');
-		console.log(prodDetailUrl);
-		this.router.navigate([prodDetailUrl + '/' + this.product['id']]);
+	onClicked() {
+		this.router.navigate([this.productDetailUrl + '/' + this.product['id']]);
 	}
 }

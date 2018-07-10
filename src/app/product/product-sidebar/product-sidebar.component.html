@@ -1,17 +1,6 @@
-<!--<h5>PRODUCTS </h5>-->
 <ul class="product-sidebar-list">
-  <a [routerLink]="['./Baby']" routerLinkActive="active"> > Baby </a>
-  <a [routerLink]="['./Bathroom Furniture']" routerLinkActive="active"> > Bathroom Furniture</a>
-  <a [routerLink]="['./Beds']" routerLinkActive="active"> > Beds</a>
-  <a [routerLink]="['./Cabinets']" routerLinkActive="active"> > Cabinets</a>
-  <a [routerLink]="['./Chairs']" routerLinkActive="active"> > Chairs</a>
-  <a [routerLink]="['./Decorations']" routerLinkActive="active"> > Decorations</a>
-  <a [routerLink]="['./Kitchen Furniture']" routerLinkActive="active"> > Kitchen Furniture</a>
-  <a [routerLink]="['./Laundry Cleaning']" routerLinkActive="active"> > Laundry & Cleaning</a>
-  <a [routerLink]="['./Lightning']" routerLinkActive="active"> > Lightning</a>
-  <a [routerLink]="['./OpenShelvingAndRacking']" routerLinkActive="active"> > Open Shelving & Racking</a>
-  <a [routerLink]="['./Outdoor_Furniture']"> > Outdoor Furniture</a>
-  <a [routerLink]="['./Outdoor_Furniture']"> > Rugs</a>
-  <a [routerLink]="['./Outdoor_Furniture']"> > Sofas</a>
-  <a [routerLink]="['./Outdoor_Furniture']"> > Tableware</a>
+	<a *ngFor="let product of products | groupByMenuCategory" routerLinkActive="active" [routerLink]="['./' + product.menuCategory]" >
+		<span class="badge"><i class="fa fa-angle-right"></i></span>
+		{{ product.menuCategory }}
+	</a>
 </ul>
